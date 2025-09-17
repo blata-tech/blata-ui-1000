@@ -1,20 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import logo from './assets/logo.png';
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  {
-    label: 'AboutUs',
-    dropdown: [
-      { to: '/OurCompany', label: 'Our Company' },
-      { to: '/vision', label: 'Vision' },
-      { to: '/mission', label: 'Mission' },
-      { to: '/team', label: 'Team' }
-    ]
-  },
-  {
-    label: 'Services',
+  { label: 'AboutUs', dropdown: [
+    { to: '/OurCompany', label: 'Our Company' },
+    { to: '/vision', label: 'Vision' },
+    { to: '/mission', label: 'Mission' },
+    { to: '/team', label: 'Team' }
+  ] },
+  { label: 'Services',
     dropdown: [
       { to: '/softwaredevelopment', label: 'Software Development' },
       { to: '/webdevelopment', label: 'Website Development' },
@@ -24,6 +20,7 @@ const navLinks = [
       { to: '/cloud', label: 'Cloud & Hosting Services' },
       { to: '/network', label: 'Networking & Security' },
       { to: '/elearning', label: 'E Learning' }
+
     ]
   },
   { to: '/contactus', label: 'ContactUs' }
@@ -32,25 +29,7 @@ const navLinks = [
 function Navbar() {
   const [hovered, setHovered] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [dropdownHovered, setDropdownHovered] = useState(null);
-<<<<<<< HEAD
-=======
-  const closeTimeout = useRef();
-
-  const handleMouseLeave = () => {
-    closeTimeout.current = setTimeout(() => {
-      setHovered(null);
-      setDropdownOpen(false);
-      setDropdownHovered(null);
-    }, 180); // 180ms delay
-  };
-
-  const handleMouseEnter = (idx, hasDropdown) => {
-    if (closeTimeout.current) clearTimeout(closeTimeout.current);
-    setHovered(idx);
-    if (hasDropdown) setDropdownOpen(true);
-  };
->>>>>>> origin/merging-the-ui-02
+  const [dropdownHovered, setDropdownHovered] = useState(null); // <-- add this
 
   return (
     <nav
@@ -69,14 +48,12 @@ function Navbar() {
         justifyContent: 'center'
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          position: 'absolute',
-          left: '2rem'
-        }}
-      >
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        position: 'absolute',
+        left: '2rem'
+      }}>
         <img
           src={logo}
           alt="Company Logo"
@@ -91,19 +68,15 @@ function Navbar() {
           }}
         />
       </div>
-
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '2rem'
-        }}
-      >
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '2rem'
+      }}>
         {navLinks.map((link, idx) => (
           <div
             key={link.to || link.label}
             style={{ position: 'relative', marginRight: '2rem' }}
-<<<<<<< HEAD
             onMouseEnter={() => {
               setHovered(idx);
               if (link.dropdown) setDropdownOpen(true);
@@ -112,11 +85,8 @@ function Navbar() {
               setHovered(null);
               setDropdownOpen(false);
               setDropdownHovered(null);
-            }}
-=======
-            onMouseEnter={() => handleMouseEnter(idx, !!link.dropdown)}
-            onMouseLeave={handleMouseLeave}
->>>>>>> origin/merging-the-ui-02
+             }}
+            
           >
             <Link
               to={link.to || '#'}
@@ -131,72 +101,52 @@ function Navbar() {
             >
               {link.label}
             </Link>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/merging-the-ui-02
-            {link.dropdown && dropdownOpen && hovered === idx && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '2.5rem',
-                  left: 0,
-                  background: 'grey',
-                  color: '#222',
-                  borderRadius: '8px',
-                  boxShadow: '0 2px 8px rgba(100,108,255,0.15)',
-                  minWidth: '270px',
-                  zIndex: 3000,
-                  padding: '0.5rem 0',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-<<<<<<< HEAD
-=======
-                onMouseEnter={() => {
-                  if (closeTimeout.current) clearTimeout(closeTimeout.current);
-                  setDropdownOpen(true);
-                }}
-                onMouseLeave={handleMouseLeave}
->>>>>>> origin/merging-the-ui-02
-              >
-                {link.dropdown.map((item, i) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      padding: '0.85rem 2rem',
-                      color: dropdownHovered === i ? '#646cff' : '#222',
-                      background: dropdownHovered === i ? '#e7eaff' : 'transparent',
-                      textDecoration: 'none',
-                      fontWeight: 500,
-<<<<<<< HEAD
-                      borderBottom:
-                        i !== link.dropdown.length - 1 ? '1px solid #eee' : 'none',
-=======
-                      borderBottom: i !== link.dropdown.length - 1 ? '1px solid #eee' : 'none',
->>>>>>> origin/merging-the-ui-02
-                      transition: 'background 0.2s, color 0.2s',
-                      whiteSpace: 'nowrap'
-                    }}
-                    onMouseEnter={() => setDropdownHovered(i)}
-                    onMouseLeave={() => setDropdownHovered(null)}
-                    onClick={() => setDropdownOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+           {link.dropdown && dropdownOpen && hovered === idx && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '2.5rem',
+                left: 0,
+                background: 'grey',
+                color: '#222',
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(100,108,255,0.15)',
+                minWidth: '270px', // wider dropdown
+                zIndex: 3000,
+                padding: '0.5rem 0',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
+              {link.dropdown.map((item, i) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    padding: '0.85rem 2rem', // more padding for clarity
+                    color: dropdownHovered === i ? '#646cff' : '#222',
+                    background: dropdownHovered === i ? '#e7eaff' : 'transparent',
+                    textDecoration: 'none',
+                    fontWeight: 500,
+                    borderBottom: i !== link.dropdown.length - 1 ? '1px solid #eee' : 'none',
+                    transition: 'background 0.2s, color 0.2s',
+                    whiteSpace: 'nowrap' // ensures one line per service
+                  }}
+                  onMouseEnter={() => setDropdownHovered(i)}
+                  onMouseLeave={() => setDropdownHovered(null)}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
           </div>
         ))}
       </div>
-<<<<<<< HEAD
-=======
-      {/* Uncomment and adjust if you want login/register buttons
-      <div style={{
+      {/* <div style={{
         position: 'absolute',
         right: '5rem',
         top: '50%',
@@ -222,9 +172,7 @@ function Navbar() {
           fontWeight: 600,
           border: '2px solid #646cff'
         }}>Register</Link>
-      </div>
-      */}
->>>>>>> origin/merging-the-ui-02
+      </div> */}
     </nav>
   );
 }
