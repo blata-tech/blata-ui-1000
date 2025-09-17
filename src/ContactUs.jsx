@@ -1,21 +1,6 @@
 import { useState } from 'react';
 import ContactImg from './assets/Contact.jpg';
 
-// ...existing imports...
-const handleSubmit = async e => {
-  e.preventDefault();
-  try {
-    await fetch('http://localhost:5000/api/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form)
-    });
-    setSubmitted(true);
-  } catch (err) {
-    alert('Failed to send message.');     
-  }
-};
-
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
@@ -28,27 +13,28 @@ function ContactUs() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    setSubmitted(true);
-    // Here you can handle sending the form data to your backend or email service
+    try {
+      const response = await fetch('http://localhost:3000/contact', { // Updated URL to match the backend endpoint
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to send message: ${errorData.errors.map(err => err.msg).join(', ')}`);
+      }
+    } catch (err) {
+      alert('Failed to send message.');
+    }
   };
 
   return (
     <div style={{ width: '100vw', background: '#fff', minHeight: '100vh', paddingTop: '7rem' }}>
-      {/* <img
-        src={ContactImg}
-        alt="Contact"
-        style={{
-          width: '100vw',
-          maxWidth: '100vw',
-          height: '320px',
-          objectFit: 'cover',
-          display: 'block',
-          margin: 0,
-          padding: 0,
-        }}
-      /> */}
       <div
         style={{
           maxWidth: '1100px',
@@ -145,31 +131,30 @@ function ContactUs() {
             </form>
           )}
         </div>
-              </div>
-              {/* Google Maps Location */}
-              <div style={{
-                width: '100%',
-                maxWidth: '1100px',
-                margin: '2rem auto',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
-              }}>
-                <h3 style={{ color: '#646cff', marginBottom: '1rem', textAlign: 'left', paddingLeft: '1rem' }}>
-                  Our Location
-                </h3>
-                <iframe
-                  title="Blata Technology Group Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.2736194270608!2d38.835574130887004!3d9.029248188114723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b850013ad8d4d%3A0xe6bcc6e3677fd7a7!2zV29zZW5lIEludGVybmFsIE1lZGljaW5lIFNwZWNpYWxpdHkgQ2xpbmljIHwg4YuI4Yiw4YqUIOGIjeGLqSDhi6jhi43hiLXhjKUg4Yuw4YuMIOGKreGIiuGKkuGKrQ!5e0!3m2!1sen!2set!4v1755092033610!5m2!1sen!2set"
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-                  
-              </div>
+      </div>
+      {/* Google Maps Location */}
+      <div style={{
+        width: '100%',
+        maxWidth: '1100px',
+        margin: '2rem auto',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
+      }}>
+        <h3 style={{ color: '#646cff', marginBottom: '1rem', textAlign: 'left', paddingLeft: '1rem' }}>
+          Our Location
+        </h3>
+        <iframe
+          title="Blata Technology Group Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.2736194270608!2d38.835574130887004!3d9.029248188114723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b850013ad8d4d%3A0xe6bcc6e3677fd7a7!2zV29zZW5lIEludGVybmFsIE1lZGljaW5lIFNwZWNpYWxpdHkgQ2xpbmljIHwg4YuI4Yiw4YqUIOGIjeGLqSDhi6jhi43hiLXhjKUg4Yuw4YuMIOGKreGIiuGKkuGKrQ!5e0!3m2!1sen!2set!4v1755092033610!5m2!1sen!2set"
+          width="100%"
+          height="350"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </div>
   );
 }
