@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import logo from './assets/logo.png';
 
 const navLinks = [
@@ -33,6 +33,24 @@ function Navbar() {
   const [hovered, setHovered] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownHovered, setDropdownHovered] = useState(null);
+<<<<<<< HEAD
+=======
+  const closeTimeout = useRef();
+
+  const handleMouseLeave = () => {
+    closeTimeout.current = setTimeout(() => {
+      setHovered(null);
+      setDropdownOpen(false);
+      setDropdownHovered(null);
+    }, 180); // 180ms delay
+  };
+
+  const handleMouseEnter = (idx, hasDropdown) => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    setHovered(idx);
+    if (hasDropdown) setDropdownOpen(true);
+  };
+>>>>>>> origin/merging-the-ui-02
 
   return (
     <nav
@@ -85,6 +103,7 @@ function Navbar() {
           <div
             key={link.to || link.label}
             style={{ position: 'relative', marginRight: '2rem' }}
+<<<<<<< HEAD
             onMouseEnter={() => {
               setHovered(idx);
               if (link.dropdown) setDropdownOpen(true);
@@ -94,6 +113,10 @@ function Navbar() {
               setDropdownOpen(false);
               setDropdownHovered(null);
             }}
+=======
+            onMouseEnter={() => handleMouseEnter(idx, !!link.dropdown)}
+            onMouseLeave={handleMouseLeave}
+>>>>>>> origin/merging-the-ui-02
           >
             <Link
               to={link.to || '#'}
@@ -108,7 +131,10 @@ function Navbar() {
             >
               {link.label}
             </Link>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/merging-the-ui-02
             {link.dropdown && dropdownOpen && hovered === idx && (
               <div
                 style={{
@@ -125,6 +151,14 @@ function Navbar() {
                   display: 'flex',
                   flexDirection: 'column'
                 }}
+<<<<<<< HEAD
+=======
+                onMouseEnter={() => {
+                  if (closeTimeout.current) clearTimeout(closeTimeout.current);
+                  setDropdownOpen(true);
+                }}
+                onMouseLeave={handleMouseLeave}
+>>>>>>> origin/merging-the-ui-02
               >
                 {link.dropdown.map((item, i) => (
                   <Link
@@ -138,8 +172,12 @@ function Navbar() {
                       background: dropdownHovered === i ? '#e7eaff' : 'transparent',
                       textDecoration: 'none',
                       fontWeight: 500,
+<<<<<<< HEAD
                       borderBottom:
                         i !== link.dropdown.length - 1 ? '1px solid #eee' : 'none',
+=======
+                      borderBottom: i !== link.dropdown.length - 1 ? '1px solid #eee' : 'none',
+>>>>>>> origin/merging-the-ui-02
                       transition: 'background 0.2s, color 0.2s',
                       whiteSpace: 'nowrap'
                     }}
@@ -155,6 +193,38 @@ function Navbar() {
           </div>
         ))}
       </div>
+<<<<<<< HEAD
+=======
+      {/* Uncomment and adjust if you want login/register buttons
+      <div style={{
+        position: 'absolute',
+        right: '5rem',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        display: 'flex',
+        gap: '1.2rem'
+      }}>
+        <Link to="/login" style={{
+          color: '#fff',
+          background: '#646cff',
+          padding: '0.5em 1.2em',
+          borderRadius: '6px',
+          textDecoration: 'none',
+          fontWeight: 600,
+          marginRight: '0.5rem'
+        }}>Login</Link>
+        <Link to="/register" style={{
+          color: '#646cff',
+          background: '#fff',
+          padding: '0.5em 1.2em',
+          borderRadius: '6px',
+          textDecoration: 'none',
+          fontWeight: 600,
+          border: '2px solid #646cff'
+        }}>Register</Link>
+      </div>
+      */}
+>>>>>>> origin/merging-the-ui-02
     </nav>
   );
 }
