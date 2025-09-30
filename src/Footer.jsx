@@ -54,6 +54,7 @@ function Footer() {
               <li><Link to="/cloud" style={{ color: '#fff', textDecoration: 'none' }}>Cloud & Hosting Services</Link></li>
               <li><Link to="/network" style={{ color: '#fff', textDecoration: 'none' }}>Networking & Security</Link></li>
               <li><Link to="/elearning" style={{ color: '#fff', textDecoration: 'none' }}>E-Learning</Link></li>
+              <li><Link to="/digital" style={{ color: '#fff', textDecoration: 'none' }}>Digital Marketing</Link></li>
             </ul>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'left' }}>
               <li><Link to="/softwaredevelopment" style={{ color: '#fff', textDecoration: 'none' }}>Software Development</Link></li>
@@ -69,7 +70,7 @@ function Footer() {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             <li><Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link></li>
             <li><Link to="/ourcompany" style={{ color: '#fff', textDecoration: 'none' }}>Our Company</Link></li>
-            <li><Link to="/services" style={{ color: '#fff', textDecoration: 'none' }}>Services</Link></li>
+            {/* <li><Link to="/services" style={{ color: '#fff', textDecoration: 'none' }}>Services</Link></li> */}
             <li><Link to="/contactus" style={{ color: '#fff', textDecoration: 'none' }}>Contact Us</Link></li>
           </ul>
         </div>

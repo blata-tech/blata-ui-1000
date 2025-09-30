@@ -3,8 +3,8 @@ import { useRef, useState } from 'react';
 import logo from './assets/logo.png';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { label: 'AboutUs', dropdown: [
+  //{ to: '/', label: 'Home' },
+  { label: 'About us', dropdown: [
     { to: '/OurCompany', label: 'Our Company' },
     { to: '/vision', label: 'Vision' },
     { to: '/mission', label: 'Mission' },
@@ -19,10 +19,11 @@ const navLinks = [
       { to: '/itconsult', label: 'IT Consulting And Digital Strategy' },
       { to: '/cloud', label: 'Cloud & Hosting Services' },
       { to: '/network', label: 'Networking & Security' },
-      { to: '/elearning', label: 'E Learning' }
+      { to: '/elearning', label: 'E Learning' },
+      { to: '/digital', label: 'Digital Marketing' }
     ]
   },
-  { to: '/contactus', label: 'ContactUs' }
+  { to: '/contactus', label: 'Contact us' }
 ];
 
 function Navbar() {
@@ -68,11 +69,12 @@ function Navbar() {
         position: 'absolute',
         left: '2rem'
       }}>
-        <img
-          src={logo}
-          alt="Company Logo"
-          style={{
-            height: '120px',
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Company Logo"
+            style={{
+              height: '120px',
             width: '300px',
             borderRadius: '12px',
             marginRight: '1rem',
@@ -81,6 +83,7 @@ function Navbar() {
             objectFit: 'cover'
           }}
         />
+        </Link>
       </div>
       <div style={{
         display: 'flex',
@@ -151,11 +154,42 @@ function Navbar() {
                   >
                     {item.label}
                   </Link>
+                  
                 ))}
               </div>
             )}
           </div>
         ))}
+      </div>
+      <div style={{
+        position: 'absolute',
+        right: '11rem',
+        top: '2.5rem'
+      }}>
+        <a
+          href="https://www.linkedin.com/company/blata-technology-group"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            background: '#fff',
+            borderRadius: '50%',
+            padding: '0.4rem',
+            boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          }}
+          title="Blata Technology Group LinkedIn"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="34"
+            height="34"
+            viewBox="0 0 24 24"
+            fill="#646cff"
+            style={{ verticalAlign: 'middle' }}
+          >
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/>
+          </svg>
+        </a>
       </div>
       {/* Uncomment and adjust if you want login/register buttons
       <div style={{
