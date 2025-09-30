@@ -23,6 +23,7 @@ import Elearning from './Elearning.jsx';
 import ITConsult from './ITconsult.jsx';
 import Cloud from './Cloud.jsx';
 import Network from './Network.jsx';
+import DigitalMarketing from './Digiital.jsx';
 import Hom from './assets/hom.jpg';
 import SoftImg from './assets/Soft.jpg';
 import WebImg from './assets/web1.jpg';
@@ -32,13 +33,19 @@ import ElearnImg from './assets/Elearn.jpg';
 import AppImg from './assets/App.jpeg'; 
 import CloudCImg from './assets/CloudC.jpeg';   
 import NetworkImg from './assets/network.jpg';
+import digitalImg from "./assets/digital.jpg";
 function Home({ count, setCount }) {
   const navigate = useNavigate();
   return (
     <>
-    
       <div style={{ position: 'relative', margin: 0, padding: 0, width: '100vw', background: '#fff' }}>
-        <img src={Hom} className="logo" alt="Blata Technology Group image" />
+        <img
+          src={Hom}
+          className="logo"
+          alt="Blata Technology Group image"
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/')}
+        />
         <div
           style={{
             position: 'absolute',
@@ -736,7 +743,87 @@ function Home({ count, setCount }) {
               </button>
             </div>
           </div>
-        </div>
+      
+          {/* 9. Digital Marketing */}
+             <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              maxWidth: '1100px',
+              gap: '2.5rem',
+              background: '#f8f9ff',
+              borderRadius: '18px',
+              boxShadow: '0 4px 18px rgba(100,108,255,0.09)',
+              padding: '2.5rem 2rem',
+              marginBottom: '1.5rem'
+            }}
+          >
+            <img
+              src={digitalImg}
+              alt="Networking & Security"
+              style={{
+                width: '340px',
+                height: '210px',
+                objectFit: 'cover',
+                borderRadius: '16px',
+                marginLeft: '2.5rem',
+                boxShadow: '0 2px 8px rgba(17, 19, 68, 0.15)'
+              }}
+            />
+            <div
+              style={{
+                flex: 1,
+                textAlign: 'left',
+                paddingRight: '2.5rem'
+              }}
+            >
+              <h3
+                style={{
+                  color: '#213547',
+                  marginBottom: '0.7rem',
+                  fontWeight: 900,
+                  fontSize: '1.45rem',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Digital Marketing
+              </h3>
+              <p
+                style={{
+                  color: '#444',
+                  fontSize: '1.08rem',
+                  marginBottom: '0.5rem',
+                  lineHeight: 1.7
+                }}
+              >
+               Our digital marketing services help businesses grow their online presence and reach the right audience. 
+               We specialize in search engine optimization (SEO), social media management, content marketing, email campaigns, and paid advertising to drive traffic, generate leads, and boost sales. 
+               By analyzing data and trends, we create tailored strategies that maximize engagement and deliver measurable results for your brand.
+              </p>
+              <button
+                style={{
+                  background: '#646cff',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.7em 2.2em',
+                  fontWeight: 700,
+                  fontSize: '1.08rem',
+                  marginTop: '0.5rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(100,108,255,0.13)',
+                  transition: 'background 0.2s'
+                }}
+                onClick={() => navigate('/Digital')}
+              >
+                More
+              </button>
+              </div>
+            </div>
+          </div>
       </section>
     </>
   );
@@ -841,6 +928,11 @@ function App() {
         <Route path="/network" element={
           <Layout>
             <Network />
+          </Layout>
+        } />
+        <Route path="/digital" element={
+          <Layout>
+            <DigitalMarketing />
           </Layout>
         } />
       </Routes>
