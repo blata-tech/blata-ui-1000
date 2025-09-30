@@ -71,6 +71,7 @@ function Navbar() {
           left: '2rem'
         }}
       >
+        <Link to="/">
         <img
           src={logo}
           alt="Company Logo"
