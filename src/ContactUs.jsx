@@ -1,20 +1,108 @@
 import { useState } from 'react';
 import ContactImg from './assets/Contact.jpg';
+import words from 'an-array-of-english-words';
 
+const englishWordsSet = new Set(words);
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
     email: '',
     message: ''
   });
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+
+    if (name === 'email') {
+      const emailError = validateEmail();
+      setErrors({ ...errors, email: emailError });
+    } else if (name === 'name') {
+      const nameError = validateName();
+      setErrors({ ...errors, name: nameError });
+    } else if (name === 'message') {
+      const messageError = validateMessage();
+      setErrors({ ...errors, message: messageError });
+    }
+  };
+
+  const validateName = () => {
+const name = form.name.trim();
+if(!name) {
+  return 'Name is required.';
+}
+ if (name.length < 2 || name.length > 50) {
+      return "Name must be between 2 and 50 characters.";
+    }
+     if (!/^[A-Z][a-z]+( [A-Z][a-z]+){1,2}$/.test(name)) {
+      return "Name must be 2 or 3 words with each starting with a capital letter.";
+    }
+     return null;
+  };
+  const validateEmail = () => {
+    const email = form.email.trim();
+    if (!email) {
+      return 'Email is required.';
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      return 'Invalid email format.';
+    }
+    return null;
+  };
+const validateMessage = () => {
+  const message = form.message.trim();
+
+  if (!message) return 'Message is required.';
+
+  if (message.length < 10 || message.length > 500) {
+    return 'Message must be between 10 and 500 characters.';
+  }
+
+  if (/[<>]/.test(message)) return 'Message cannot contain < or >';
+
+  if (!/[a-zA-Z]/.test(message)) return 'Message must contain readable words.';
+
+  // Split into words and remove punctuation
+  const wordsArr = message
+    .split(/\s+/)
+    .map(w => w.replace(/[^a-zA-Z]/g, ''))
+    .filter(Boolean);
+
+  if (wordsArr.length < 3) return 'Message must contain at least 3 English words.';
+
+  // Check that every word is recognized
+  for (let word of wordsArr) {
+    if (!englishWordsSet.has(word.toLowerCase())) {
+      return `"${word}" is not a recognized English word.`;
+    }
+  }
+
+  return null;
+};
+
+  const handleBlur = (e) => {
+    let error = null;
+    if (e.target.name === 'name') {
+      error = validateName();
+    } else if (e.target.name === 'email') {
+      error = validateEmail();
+    } else if (e.target.name === 'message') {
+      error = validateMessage();
+    }
+    setErrors({ ...errors, [e.target.name]: error });
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const nameError = validateName();
+    const emailError = validateEmail();
+    const messageError = validateMessage();
+    if (nameError || emailError || messageError) {
+      setErrors({ name: nameError, email: emailError, message: messageError });
+      return;
+    }
     try {
       const response = await fetch('http://localhost:3000/contact', { // Updated URL to match the backend endpoint
         method: 'POST',
@@ -31,6 +119,21 @@ function ContactUs() {
     } catch (err) {
       alert('Failed to send message.');
     }
+  };
+
+  const getEmailInputStyle = () => {
+    if (!form.email) return {};
+    return errors.email ? { border: '1px solid red' } : { border: '1px solid green' };
+  };
+
+  const getNameInputStyle = () => {
+    if (!form.name) return {};
+    return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
+  };
+
+  const getMessageInputStyle = () => {
+    if (!form.message) return {};
+    return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
   };
 
   return (
@@ -75,37 +178,49 @@ function ContactUs() {
         </div>
         {/* Form Right */}
         <div style={{ flex: 1, minWidth: 260 }}>
-          <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#646cff', textAlign: 'left' }}>Send us a message</h3>
+          <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#646cff', textAlign: 'center' }}>Send us a message</h3>
           {submitted ? (
             <div style={{ color: 'green', marginBottom: '1rem' }}>Thank you for contacting us!</div>
           ) : (
             <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="name">Name</label><br />
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  style={{ width: '100%', padding: '0.5em', borderRadius: '4px', border: '1px solid #ccc' }}
-                />
+           <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
+            <label htmlFor='name' style={{marginRight: '2.2rem', fontWeight: 'bold' }}>Name:</label>
+            <input
+            type='text'
+            id='name'
+            name='name'
+            required
+            value={form.name}
+            onChange={handleChange}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getNameInputStyle()}}
+            />
+            {errors.name && (
+              <div
+                style={{
+                  color: 'red',
+                  marginTop: '0.5rem',
+                  position: 'relative',
+                }}
+              >
+                {errors.name}
               </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="email">Email</label><br />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-                  style={{ width: '100%', padding: '0.5em', borderRadius: '4px', border: '1px solid #ccc' }}
-                />
-              </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="message">Message</label><br />
+            )}
+           </div>
+            <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
+            <label htmlFor='email' style={{marginRight: '2.2rem', fontWeight: 'bold' }}>Email:</label>
+            <input
+            type='email'
+            id='email'
+            name='email'
+            required
+            value={form.email}
+            onChange={handleChange}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getEmailInputStyle()}}
+            />
+            {errors.email && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.email}</div>}
+           </div>
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="message" style={{marginRight: '1rem', fontWeight: 'bold'}}>Message:</label>
                 <textarea
                   id="message"
                   name="message"
@@ -113,9 +228,16 @@ function ContactUs() {
                   value={form.message}
                   onChange={handleChange}
                   rows={5}
-                  style={{ width: '100%', padding: '0.5em', borderRadius: '4px', border: '1px solid #ccc' }}
+                  style={{
+                    flex: '1',
+                    padding: '0.5em',
+                    borderRadius: '4px',
+                    border: '1px solid #ccc',
+                    ...getMessageInputStyle(),
+                  }}
                   placeholder="Type your message here..."
                 />
+                {errors.message && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.message}</div>}
               </div>
               <button type="submit" style={{
                 background: '#646cff',

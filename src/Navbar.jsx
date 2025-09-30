@@ -4,13 +4,17 @@ import logo from './assets/logo.png';
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { label: 'AboutUs', dropdown: [
-    { to: '/OurCompany', label: 'Our Company' },
-    { to: '/vision', label: 'Vision' },
-    { to: '/mission', label: 'Mission' },
-    { to: '/team', label: 'Team' }
-  ] },
-  { label: 'Services',
+  {
+    label: 'AboutUs',
+    dropdown: [
+      { to: '/OurCompany', label: 'Our Company' },
+      { to: '/vision', label: 'Vision' },
+      { to: '/mission', label: 'Mission' },
+      { to: '/team', label: 'Team' }
+    ]
+  },
+  {
+    label: 'Services',
     dropdown: [
       { to: '/softwaredevelopment', label: 'Software Development' },
       { to: '/webdevelopment', label: 'Website Development' },
@@ -62,12 +66,14 @@ function Navbar() {
         justifyContent: 'center'
       }}
     >
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        position: 'absolute',
-        left: '2rem'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          position: 'absolute',
+          left: '2rem'
+        }}
+      >
         <img
           src={logo}
           alt="Company Logo"
@@ -82,11 +88,14 @@ function Navbar() {
           }}
         />
       </div>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '2rem'
-      }}>
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '2rem'
+        }}
+      >
         {navLinks.map((link, idx) => (
           <div
             key={link.to || link.label}
