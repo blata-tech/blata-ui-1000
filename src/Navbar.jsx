@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import logo from './assets/logo.png';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
+  //{ to: '/', label: 'Home' },
   { label: 'AboutUs', dropdown: [
     { to: '/OurCompany', label: 'Our Company' },
     { to: '/vision', label: 'Vision' },
