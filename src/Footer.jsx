@@ -31,7 +31,9 @@ function Footer() {
             <strong>Address:</strong><br />
             Lemikura, Addis Ababa, Ethiopia<br />
             <strong>Email:</strong> <a href="mailto:contact@blatatechnology.net" style={{ color: '#fff' }}>contact@blatatechnology.net</a><br />
-            <strong>Phone:</strong> <a href="tel:+251982996262" style={{ color: '#fff' }}>+251982996262</a>
+            <strong>Phone:</strong> <a href="tel:+251982996262" style={{ color: '#fff' }}>+251982996262</a><br />
+            <strong>P.O.Box:</strong> 1079<br />
+            
           </p>
         </div>
         {/* Our Services */}

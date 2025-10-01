@@ -10,7 +10,7 @@ import { pool } from './config/db.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
+  
 const words = fs.readFileSync(wordListPath, 'utf8').split('\n');
 const englishWordsSet = new Set(words);
 
@@ -27,7 +27,7 @@ app.post(
       .trim()
       .notEmpty().withMessage("Name is required.")
       .isLength({ min: 2, max: 50 }).withMessage("Name must be between 2 and 50 characters.")
-      .matches(/^[A-Z][a-z]+ [A-Z][a-z]+$/).withMessage("Name must be two words with capital letters."),
+      .matches(/^[A-Z][a-z]+( [A-Z][a-z]+){1,2}$/).withMessage("Name must be 2 or 3 words with each starting with a capital letter."),
 
     body("email")
       .trim()
@@ -44,6 +44,7 @@ app.post(
       .matches(/[a-zA-Z]/).withMessage("Message must contain readable words.")
       .custom((value) => {
         const words = value.trim().split(/\s+/);
+        console.log("Words being validated:", words); // Log the words for debugging
         if (words.length < 3) throw new Error("Message must contain at least 3 English words.");
         for (let word of words) {
           if (!englishWordsSet.has(word.toLowerCase())) {
@@ -64,7 +65,7 @@ app.post(
       await pool.query(query, [name, email, message]);
       res.status(200).json({ message: "Message saved successfully!" });
     } catch (err) {
-      console.error("DB error:", err);
+      console.error("DB error:", err); // Log the database error for debugging
       res.status(500).json({ errors: "Failed to save message." });
     }
   }

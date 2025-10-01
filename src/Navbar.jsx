@@ -70,11 +70,11 @@ function Navbar() {
         left: '2rem'
       }}>
         <Link to="/">
-          <img
-            src={logo}
-            alt="Company Logo"
-            style={{
-              height: '120px',
+        <img
+          src={logo}
+          alt="Company Logo"
+          style={{
+            height: '120px',
             width: '300px',
             borderRadius: '12px',
             marginRight: '1rem',
@@ -85,11 +85,14 @@ function Navbar() {
         />
         </Link>
       </div>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '2rem'
-      }}>
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '2rem'
+        }}
+      >
         {navLinks.map((link, idx) => (
           <div
             key={link.to || link.label}
@@ -164,7 +167,10 @@ function Navbar() {
       <div style={{
         position: 'absolute',
         right: '11rem',
-        top: '2.5rem'
+        top: '2.5rem',
+        gap: '1.2rem',
+        display: 'flex',
+        alignItems: 'center'
       }}>
         <a
           href="https://www.linkedin.com/company/blata-technology-group"
@@ -181,13 +187,63 @@ function Navbar() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="34"
-            height="34"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="#646cff"
             style={{ verticalAlign: 'middle' }}
           >
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.604c0-1.337-.026-3.063-1.867-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2.001 3.6 4.601v5.595z"/>
+          </svg>
+        </a>
+        {/* Telegram */}
+        <a
+          href="https://t.me/Blata_technologies"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            background: '#fff',
+            borderRadius: '50%',
+            padding: '0.4rem',
+            boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          }}
+          title="Blata Technology Group Telegram"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#229ED9"
+            style={{ verticalAlign: 'middle' }}
+          >
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm4.93 7.36l-1.6 7.56c-.12.53-.43.66-.87.41l-2.4-1.77-1.16 1.12c-.13.13-.24.24-.49.24l.18-2.53 4.61-4.16c.2-.18-.04-.28-.31-.1l-5.7 3.59-2.45-.77c-.53-.16-.54-.53.11-.78l9.56-3.69c.44-.16.82.1.68.77z"/>
+          </svg>
+        </a>
+        {/* Facebook */}
+        <a
+          href="https://web.facebook.com/?_rdc=1&_rdr"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            background: '#fff',
+            borderRadius: '50%',
+            padding: '0.4rem',
+            boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          }}
+          title="Blata Technology Group Facebook"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#1877F3"
+            style={{ verticalAlign: 'middle' }}
+          >
+            <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.592 1.325-1.326V1.326C24 .592 23.405 0 22.675 0"/>
           </svg>
         </a>
       </div>
