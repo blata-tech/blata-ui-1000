@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import ContactImg from './assets/Contact.jpg';
-import words from 'an-array-of-english-words';
-
-const englishWordsSet = new Set(words);
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
@@ -34,10 +31,10 @@ if(!name) {
   return 'Name is required.';
 }
  if (name.length < 2 || name.length > 50) {
-      return "Name must be between 2 and 50 characters.";
+      return "Please enter your full name.";
     }
-     if (!/^[A-Z][a-z]+( [A-Z][a-z]+){1,2}$/.test(name)) {
-      return "Name must be 2 or 3 words with each starting with a capital letter.";
+     if (!/^[A-Za-z]+( [A-Za-z]+){1,2}$/.test(name)) {
+      return "Please enter your full name.";
     }
      return null;
   };
@@ -46,42 +43,21 @@ if(!name) {
     if (!email) {
       return 'Email is required.';
     }
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    if (!/^[a-zA-Z0-9._%+-]{3,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
       return 'Invalid email format.';
     }
     return null;
   };
-const validateMessage = () => {
+  const validateMessage = () =>{
   const message = form.message.trim();
-
-  if (!message) return 'Message is required.';
-
-  if (message.length < 10 || message.length > 500) {
-    return 'Message must be between 10 and 500 characters.';
+  if(!message){
+    return 'message is required.';
   }
-
-  if (/[<>]/.test(message)) return 'Message cannot contain < or >';
-
-  if (!/[a-zA-Z]/.test(message)) return 'Message must contain readable words.';
-
-  // Split into words and remove punctuation
-  const wordsArr = message
-    .split(/\s+/)
-    .map(w => w.replace(/[^a-zA-Z]/g, ''))
-    .filter(Boolean);
-
-  if (wordsArr.length < 3) return 'Message must contain at least 3 English words.';
-
-  // Check that every word is recognized
-  for (let word of wordsArr) {
-    if (!englishWordsSet.has(word.toLowerCase())) {
-      return `"${word}" is not a recognized English word.`;
-    }
+  if(message.length <10 || message.length > 500){
+    return 'message must be between 10 and 500 characters.';
   }
-
   return null;
-};
-
+  };
   const handleBlur = (e) => {
     let error = null;
     if (e.target.name === 'name') {
@@ -173,6 +149,9 @@ const validateMessage = () => {
             </li>
             <li>
               <strong>Address:</strong> Lemikura, Addis Ababa, Ethiopia
+            </li>
+              <li>
+             <strong>P.O. Box:</strong> 1079
             </li>
           </ul>
         </div>
