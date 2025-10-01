@@ -4,7 +4,7 @@ import logo from './assets/logo.png';
 
 const navLinks = [
   //{ to: '/', label: 'Home' },
-  { label: 'AboutUs', dropdown: [
+  { label: 'About us', dropdown: [
     { to: '/OurCompany', label: 'Our Company' },
     { to: '/vision', label: 'Vision' },
     { to: '/mission', label: 'Mission' },
