@@ -1,49 +1,64 @@
 import digitalImg from "./assets/digital.jpg";
 
 function DigitalMarketing() {
-  return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={digitalImg}
-        alt="Digital Marketing"
-        style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
-        }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 700, marginBottom: '1.5rem' }}>Digital Marketing</h1>
-        <p style={{ color: '#222', lineHeight: '1.6', fontSize: '1.1rem' }}>
-          Boost your business with our comprehensive digital marketing solutions! We offer
-          <ul style={{ marginTop: '1rem', marginBottom: '1rem', paddingLeft: '1.2rem'}}>
-            <li>SEO</li>
-            <li>Social Media Management</li>
-            <li>Content Creation</li>
-            <li>Email Campaigns</li>
-            <li>and more to help you reach your target audience and grow online.</li>
-          </ul>
-          At Blata, we help businesses grow and succeed in the digital world by delivering tailored digital marketing strategies that reach the right audience and drive measurable results.
-        </p>
-        <p style={{ color: "#222", lineHeight: "1.6", fontSize: "1.1rem" }}>
-          Our services include search engine optimization (SEO) to improve your website’s visibility and attract organic traffic, pay-per-click advertising (PPC) to maximize ROI through targeted campaigns, and social media marketing to build a strong online presence with engaging content and community management.
-        </p>
-        <p style={{ color: '#222', fontSize: '1.08rem', marginTop: '1.5rem' }}>
-          Contact us today to learn how our digital marketing services can help your business thrive!
+   return (
+    <div
+      style={{
+        maxWidth: '1200px',
+        width: '96vw',
+        minHeight: '70vh',
+        margin: '4rem auto',
+        padding: '2.5rem 2rem',
+        background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+        borderRadius: '24px',
+        boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '3rem'
+      }}
+    >
+      {/* Logo Left */}
+      <div style={{
+        flex: '0 0 340px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <img
+          src={digitalImg}
+          alt="Blata Technology Group Logo"
+          style={{
+            width: '320px',
+            height: '320px',
+            borderRadius: '24px',
+            background: '#fff',
+            boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+            objectFit: 'contain'
+          }}
+        />
+      </div>
+      {/* Content Right */}
+      <div style={{
+        flex: 1,
+        textAlign: 'left',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }}>
+        <h1 style={{
+          color: '#646cff',
+          fontWeight: 900,
+          fontSize: '2.2rem',
+          marginBottom: '1.5rem'
+        }}>
+          Digital Marketing
+        </h1>
+        <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+          At Blata Technology Group, our digital marketing services help businesses grow their online presence, reach the right audience, and achieve measurable results. 
+          We provide tailored strategies that combine creativity and analytics to ensure maximum impact across all digital channels, including social media marketing, search engine optimization (SEO), pay-per-click (PPC) advertising, content marketing, and email campaigns. 
+          Our approach focuses on maximizing your Return on Investment (ROI), making sure that every dollar spent translates into increased visibility, quality leads, and higher sales. 
+          With data-driven insights and continuous optimization, we deliver digital campaigns that build your brand and drive sustainable growth.
         </p>
       </div>
     </div>
