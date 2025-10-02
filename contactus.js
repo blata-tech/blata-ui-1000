@@ -23,36 +23,36 @@ app.use(cors());
 app.post(
   "/contact",
   [
-    body("name")
-      .trim()
-      .notEmpty().withMessage("Name is required.")
-      .isLength({ min: 2, max: 50 }).withMessage("Name must be between 2 and 50 characters.")
-      .matches(/^[A-Z][a-z]+( [A-Z][a-z]+){1,2}$/).withMessage("Name must be 2 or 3 words with each starting with a capital letter."),
-
+body("name")
+  .trim()
+  .notEmpty().withMessage("Name is required.")
+  .isLength({ min: 2, max: 100 }).withMessage("Name must be between 2 and 100 characters.")
+  .matches(/^[a-zA-Z\s'-]+$/).withMessage("Name can only contain letters, spaces, apostrophes, and hyphens.")
+  .custom((value) => {
+    const words = value.trim().split(/\s+/);
+    if (words.length < 2) {
+      throw new Error("Name must contain at least two words.");
+    }
+    return true;
+  }),
     body("email")
-      .trim()
-      .notEmpty().withMessage("Email is required.")
-      .isEmail().withMessage("Invalid email format.")
-      .isLength({ max: 100 })
-      .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).withMessage("Enter a valid email."),
-
-    body("message")
-      .trim()
-      .notEmpty().withMessage("Message is required.")
-      .isLength({ min: 10, max: 500 })
-      .matches(/^[^<>]*$/).withMessage("Message cannot contain < or >")
-      .matches(/[a-zA-Z]/).withMessage("Message must contain readable words.")
-      .custom((value) => {
-        const words = value.trim().split(/\s+/);
-        console.log("Words being validated:", words); // Log the words for debugging
-        if (words.length < 3) throw new Error("Message must contain at least 3 English words.");
-        for (let word of words) {
-          if (!englishWordsSet.has(word.toLowerCase())) {
-            throw new Error(`"${word}" is not a recognized English word.`);
-          }
-        }
-        return true;
-      }),
+  .trim()
+  .notEmpty().withMessage("Email is required.")
+  .isEmail().withMessage("Invalid email format.")
+  .isLength({ max: 200 }).withMessage("Email must not exceed 200 characters.")
+  .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).withMessage("Enter a valid email address."),
+   body("message")
+  .trim()
+  .notEmpty().withMessage("Message is required.")
+  .isLength({ min: 10, max: 500 }).withMessage("Message must be between 10 and 500 characters.")
+  .matches(/^[^<>]*$/).withMessage("Message cannot contain < or > characters.")
+  .custom((value) => {
+    const words = value.trim().split(/\s+/);
+    if (words.length < 3) {
+      throw new Error("Message must contain at least 3 words.");
+    }
+    return true;
+  }),
   ],
   async (req, res) => {
     const errors = validationResult(req);

@@ -12,17 +12,16 @@ function ContactUs() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-
-    if (name === 'email') {
-      const emailError = validateEmail();
-      setErrors({ ...errors, email: emailError });
-    } else if (name === 'name') {
-      const nameError = validateName();
-      setErrors({ ...errors, name: nameError });
-    } else if (name === 'message') {
-      const messageError = validateMessage();
-      setErrors({ ...errors, message: messageError });
-    }
+  // let error = null;
+  // if (name === 'name') {
+  //   error = validateName();
+  // } else if (name === 'email') {
+  //   error = validateEmail();
+  // } else if (name === 'message') {
+  //   error = validateMessage();
+  // }
+  // setErrors({ ...errors, [name]: error });
+  
   };
 
   const validateName = () => {
@@ -58,17 +57,19 @@ if(!name) {
   }
   return null;
   };
-  const handleBlur = (e) => {
-    let error = null;
-    if (e.target.name === 'name') {
-      error = validateName();
-    } else if (e.target.name === 'email') {
-      error = validateEmail();
-    } else if (e.target.name === 'message') {
-      error = validateMessage();
-    }
-    setErrors({ ...errors, [e.target.name]: error });
-  };
+const handleBlur = (e) => {
+  let error = null;
+
+  if (e.target.name === 'name') {
+    error = validateName();
+  } else if (e.target.name === 'email') {
+    error = validateEmail();
+  } else if (e.target.name === 'message') {
+    error = validateMessage();
+  }
+
+  setErrors({ ...errors, [e.target.name]: error }); // Update the error state for the specific field
+};
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -96,21 +97,15 @@ if(!name) {
       alert('Failed to send message.');
     }
   };
+  // const getNameInputStyle = () => {
+  //   if (!form.name) return {};
+  //   return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
+  // };
 
-  const getEmailInputStyle = () => {
-    if (!form.email) return {};
-    return errors.email ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
-
-  const getNameInputStyle = () => {
-    if (!form.name) return {};
-    return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
-
-  const getMessageInputStyle = () => {
-    if (!form.message) return {};
-    return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
+  // const getMessageInputStyle = () => {
+  //   if (!form.message) return {};
+  //   return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
+  // };
 
   return (
     <div style={{ width: '100vw', background: '#fff', minHeight: '100vh', paddingTop: '7rem' }}>
@@ -171,7 +166,13 @@ if(!name) {
             required
             value={form.name}
             onChange={handleChange}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getNameInputStyle()}}
+            onBlur={handleBlur}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', 
+      border: !form.name
+      ? '1px solid white' // White border if the field is empty
+      : errors.name
+      ? '1px solid red' // Red border if there is an error
+      : '1px solid green', width: '100px'}}
             />
             {errors.name && (
               <div
@@ -194,7 +195,13 @@ if(!name) {
             required
             value={form.email}
             onChange={handleChange}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getEmailInputStyle()}}
+            onBlur={handleBlur}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px',  
+       border: !form.email
+      ? '1px solid white' // White border if the field is empty
+      : errors.email
+      ? '1px solid red' // Red border if there is an error
+      : '1px solid green', width: '100px'}}
             />
             {errors.email && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.email}</div>}
            </div>
@@ -206,13 +213,19 @@ if(!name) {
                   required
                   value={form.message}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   rows={5}
                   style={{
                     flex: '1',
                     padding: '0.5em',
                     borderRadius: '4px',
-                    border: '1px solid #ccc',
-                    ...getMessageInputStyle(),
+                    border: !form.message
+                  ? '1px solid white' // White border if the field is empty
+                  : errors.message
+                  ? '1px solid red' // Red border if there is an error
+                  : '1px solid green',
+                     
+                    //...getMessageInputStyle(),
                   }}
                   placeholder="Type your message here..."
                 />
