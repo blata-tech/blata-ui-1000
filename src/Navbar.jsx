@@ -15,12 +15,12 @@ const navLinks = [
       { to: '/softwaredevelopment', label: 'Software Development' },
       { to: '/webdevelopment', label: 'Website Development' },
       { to: '/applicationdevelopment', label: 'Application Development' },
-      { to: '/wordpress', label: 'WordPress & CPanel Administration' },
+      { to: '/digital', label: 'Digital Marketing' },
       { to: '/itconsult', label: 'IT Consulting And Digital Strategy' },
       { to: '/cloud', label: 'Cloud & Hosting Services' },
       { to: '/network', label: 'Networking & Security' },
       { to: '/elearning', label: 'E Learning' },
-      { to: '/digital', label: 'Digital Marketing' }
+      { to: '/wordpress', label: 'WordPress & CPanel Administration' }
     ]
   },
   { to: '/contactus', label: 'Contact us' }
@@ -166,7 +166,7 @@ function Navbar() {
       </div>
       <div style={{
         position: 'absolute',
-        right: '11rem',
+        right: '6rem',
         top: '2.5rem',
         gap: '1.2rem',
         display: 'flex',
@@ -223,7 +223,7 @@ function Navbar() {
         </a>
         {/* Facebook */}
         <a
-          href="https://web.facebook.com/?_rdc=1&_rdr"
+          href="https://web.facebook.com/profile.php?id=61581761064358"
           target="_blank"
           rel="noopener noreferrer"
           style={{

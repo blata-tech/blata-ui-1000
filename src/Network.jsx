@@ -1,44 +1,68 @@
 import NetworkImg from './assets/Network.jpg';
 
 function Network() {
-  return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={NetworkImg}
-        alt="Network"
+   return (
+      <div
         style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          maxWidth: '1200px',
+          width: '96vw',
+          minHeight: '70vh',
+          margin: '4rem auto',
+          padding: '2.5rem 2rem',
+          background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+          borderRadius: '24px',
+          boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '3rem'
         }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 700, marginBottom: '1.5rem' }}>Network And Security Administration</h1>
-        <p style={{ color: '#222', lineHeight: '1.6', fontSize: '1.1rem' }}>
-            <p>
-               we offer reliable network and security administration services to keep your business connected and protected. 
-               We handle the full setup of network systems, including installation, configuration, and maintenance of routers, switches, and wireless networks. 
-               Our team also ensures your systems are secure with firewalls, antivirus tools, and access controls to protect against cyber threats. 
-               With regular monitoring and fast support, we help you maintain a safe and efficient IT environment, so you can focus on your business with confidence.
-            </p>
-        </p>
+      >
+        {/* Logo Left */}
+        <div style={{
+          flex: '0 0 340px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img
+            src={NetworkImg}
+            alt="Blata Technology Group Logo"
+            style={{
+              width: '320px',
+              height: '320px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'contain'
+            }}
+          />
+        </div>
+        {/* Content Right */}
+        <div style={{
+          flex: 1,
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <h1 style={{
+            color: '#646cff',
+            fontWeight: 900,
+            fontSize: '2.2rem',
+            marginBottom: '1.5rem'
+          }}>
+            Networking & Security
+          </h1>
+          <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+            At Blata Technology Group, our network and security services are designed to protect your business infrastructure and ensure seamless, reliable connectivity. 
+            We provide comprehensive solutions including network design, implementation, monitoring, and cybersecurity measures to safeguard your data and systems against threats. 
+            Our team works to optimize network performance, prevent unauthorized access, and maintain business continuity, allowing you to operate with confidence. By combining advanced technologies, proactive monitoring, and industry best practices, we ensure your network is secure, resilient, and fully aligned with your organizational needs.
+          </p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+  
 
 export default Network;

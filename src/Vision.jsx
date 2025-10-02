@@ -1,4 +1,4 @@
-import logo from './assets/logo.png';
+import Vission from './assets/Vission.jpg';
 
 function Vision() {
   return (
@@ -26,7 +26,7 @@ function Vision() {
         justifyContent: 'center'
       }}>
         <img
-          src={logo}
+          src={Vission}
           alt="Blata Technology Group Logo"
           style={{
             width: '320px',
