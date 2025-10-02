@@ -2,39 +2,68 @@ import webImg from './assets/web1.jpg';
 
 function WebDevelopment() {
   return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={webImg}
-        alt="Web Development"
-        style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
-        }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 900, marginBottom: '1.5rem' }}>Web Development</h1>
-        <p style={{ color: '#222', lineHeight: '1.6', fontSize: '1.1rem' }}>
-            We create responsive, modern, and high-performing websites that reflect your brand and support your business goals. 
-            Whether it’s a company website, a web application, or an online store, we build from the ground up with a focus on performance, SEO, and user experience.
-        </p>
-      </div>
-    </div>
-  );
-}
+     <div
+       style={{
+         maxWidth: '1200px',
+         width: '96vw',
+         minHeight: '70vh',
+         margin: '4rem auto',
+         padding: '2.5rem 2rem',
+         background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+         borderRadius: '24px',
+         boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+         display: 'flex',
+         flexDirection: 'row',
+         alignItems: 'center',
+         gap: '3rem'
+       }}
+     >
+       {/* Logo Left */}
+       <div style={{
+         flex: '0 0 340px',
+         display: 'flex',
+         alignItems: 'center',
+         justifyContent: 'center'
+       }}>
+         <img
+           src={webImg}
+           alt="Blata Technology Group Logo"
+           style={{
+             width: '320px',
+             height: '320px',
+             borderRadius: '24px',
+             background: '#fff',
+             boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+             objectFit: 'contain'
+           }}
+         />
+       </div>
+       {/* Content Right */}
+       <div style={{
+         flex: 1,
+         textAlign: 'left',
+         display: 'flex',
+         flexDirection: 'column',
+         justifyContent: 'center'
+       }}>
+         <h1 style={{
+           color: '#646cff',
+           fontWeight: 900,
+           fontSize: '2.2rem',
+           marginBottom: '1.5rem'
+         }}>
+           Web Development
+         </h1>
+         <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+           At Blata Technology Group, we deliver professional web development services that help businesses establish a strong and engaging online presence. 
+           Our team designs and builds responsive, secure, and scalable websites tailored to your brand and business needs. 
+           From simple informational sites to complex e-commerce platforms, we focus on creating user-friendly experiences that attract, engage, and convert visitors. 
+           By combining modern technologies, clean design, and performance optimization, we ensure that every website we develop not only looks great but also drives results and supports your business growth.
+         </p>
+       </div>
+     </div>
+   );
+ }
+ 
 
 export default WebDevelopment;

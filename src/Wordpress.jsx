@@ -1,44 +1,69 @@
 import WordpImg from './assets/Wordp.jpg';
 
 function WordPress() {
-  return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={WordpImg}
-        alt="Wordpess"
+   return (
+      <div
         style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          maxWidth: '1200px',
+          width: '96vw',
+          minHeight: '70vh',
+          margin: '4rem auto',
+          padding: '2.5rem 2rem',
+          background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+          borderRadius: '24px',
+          boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '3rem'
         }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 700, marginBottom: '1.5rem' }}>WordPress and Cpanel Administration</h1>
-            <p style={{ color: '#333', fontSize: '1.125rem', lineHeight: '1.75', marginBottom: '1.5rem' }}>
-            we specialize in professional WordPress and cPanel administration services to help businesses manage and maintain their websites with ease. 
-            Our team handles everything from installing and customizing themes and plugins to optimizing website performance and ensuring strong security. 
-            We take care of regular updates, backups, and SEO-friendly configurations to keep your site running at its best. 
-            On the cPanel side, we manage domains, emails, databases, files, and server resources efficiently. 
-            We also handle SSL setup, monitor for issues, and provide reliable troubleshooting and support.
-            With our services, you can focus on growing your business while we take care of the technical side of your website.
-            </p>
+      >
+        {/* Logo Left */}
+        <div style={{
+          flex: '0 0 340px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img
+            src={WordpImg}
+            alt="Blata Technology Group Logo"
+            style={{
+              width: '320px',
+              height: '320px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'contain'
+            }}
+          />
+        </div>
+        {/* Content Right */}
+        <div style={{
+          flex: 1,
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <h1 style={{
+            color: '#646cff',
+            fontWeight: 900,
+            fontSize: '2.2rem',
+            marginBottom: '1.5rem'
+          }}>
+            WordPress and Cpanel Administration
+          </h1>
+          <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+            At Blata Technology Group, our WordPress and cPanel administration services help businesses manage, optimize, and secure their websites efficiently. 
+            We provide expert setup, configuration, maintenance, and troubleshooting for WordPress websites, ensuring they run smoothly, load quickly, and remain secure. 
+            With cPanel administration, we handle server management tasks such as domain setup, email configuration, database management, backups, and performance optimization. 
+            Our team ensures your website is reliable, well-maintained, and fully supported, allowing you to focus on growing your business while we take care of the technical details.
+          </p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+  
 
 export default WordPress;
