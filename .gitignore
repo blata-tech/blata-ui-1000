@@ -33,3 +33,15 @@ dist-ssr
 
 # Optional: Vite or frontend cache
 blatek-frontend/.vite/
+
+# Ignore root files that should not be tracked
+2.jpg
+README.md
+config/
+index.html
+package-lock.json
+package.json
+public/
+src/
+vite.config.js
+.vite/
