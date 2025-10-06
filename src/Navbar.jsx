@@ -63,21 +63,21 @@ function Navbar() {
         justifyContent: 'center'
       }}
     >
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        position: 'absolute',
-        left: '2rem'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          position: 'absolute',
+          left: 0,
+        }}
+      >
         <Link to="/">
         <img
           src={logo}
           alt="Company Logo"
           style={{
-            height: '120px',
+            height: '130px',
             width: '300px',
-            borderRadius: '12px',
-            marginRight: '1rem',
             boxShadow: '0 2px 8px rgba(100,108,255,0.15)',
             background: '#fff',
             objectFit: 'cover'

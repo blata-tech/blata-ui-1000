@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import ContactImg from './assets/Contact.jpg';
-import words from 'an-array-of-english-words';
-
-const englishWordsSet = new Set(words);
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
@@ -15,17 +12,16 @@ function ContactUs() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-
-    if (name === 'email') {
-      const emailError = validateEmail();
-      setErrors({ ...errors, email: emailError });
-    } else if (name === 'name') {
-      const nameError = validateName();
-      setErrors({ ...errors, name: nameError });
-    } else if (name === 'message') {
-      const messageError = validateMessage();
-      setErrors({ ...errors, message: messageError });
-    }
+  // let error = null;
+  // if (name === 'name') {
+  //   error = validateName();
+  // } else if (name === 'email') {
+  //   error = validateEmail();
+  // } else if (name === 'message') {
+  //   error = validateMessage();
+  // }
+  // setErrors({ ...errors, [name]: error });
+  
   };
 
   const validateName = () => {
@@ -34,10 +30,10 @@ if(!name) {
   return 'Name is required.';
 }
  if (name.length < 2 || name.length > 50) {
-      return "Name must be between 2 and 50 characters.";
+      return "Please enter your full name.";
     }
-     if (!/^[A-Z][a-z]+( [A-Z][a-z]+){1,2}$/.test(name)) {
-      return "Name must be 2 or 3 words with each starting with a capital letter.";
+     if (!/^[A-Za-z]+( [A-Za-z]+){1,2}$/.test(name)) {
+      return "Please enter your full name.";
     }
      return null;
   };
@@ -46,53 +42,34 @@ if(!name) {
     if (!email) {
       return 'Email is required.';
     }
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    if (!/^[a-zA-Z0-9._%+-]{3,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
       return 'Invalid email format.';
     }
     return null;
   };
-const validateMessage = () => {
+  const validateMessage = () =>{
   const message = form.message.trim();
-
-  if (!message) return 'Message is required.';
-
-  if (message.length < 10 || message.length > 500) {
-    return 'Message must be between 10 and 500 characters.';
+  if(!message){
+    return 'message is required.';
   }
-
-  if (/[<>]/.test(message)) return 'Message cannot contain < or >';
-
-  if (!/[a-zA-Z]/.test(message)) return 'Message must contain readable words.';
-
-  // Split into words and remove punctuation
-  const wordsArr = message
-    .split(/\s+/)
-    .map(w => w.replace(/[^a-zA-Z]/g, ''))
-    .filter(Boolean);
-
-  if (wordsArr.length < 3) return 'Message must contain at least 3 English words.';
-
-  // Check that every word is recognized
-  for (let word of wordsArr) {
-    if (!englishWordsSet.has(word.toLowerCase())) {
-      return `"${word}" is not a recognized English word.`;
-    }
+  if(message.length <10 || message.length > 500){
+    return 'message must be between 10 and 500 characters.';
   }
-
   return null;
-};
-
-  const handleBlur = (e) => {
-    let error = null;
-    if (e.target.name === 'name') {
-      error = validateName();
-    } else if (e.target.name === 'email') {
-      error = validateEmail();
-    } else if (e.target.name === 'message') {
-      error = validateMessage();
-    }
-    setErrors({ ...errors, [e.target.name]: error });
   };
+const handleBlur = (e) => {
+  let error = null;
+
+  if (e.target.name === 'name') {
+    error = validateName();
+  } else if (e.target.name === 'email') {
+    error = validateEmail();
+  } else if (e.target.name === 'message') {
+    error = validateMessage();
+  }
+
+  setErrors({ ...errors, [e.target.name]: error }); // Update the error state for the specific field
+};
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -120,21 +97,15 @@ const validateMessage = () => {
       alert('Failed to send message.');
     }
   };
+  // const getNameInputStyle = () => {
+  //   if (!form.name) return {};
+  //   return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
+  // };
 
-  const getEmailInputStyle = () => {
-    if (!form.email) return {};
-    return errors.email ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
-
-  const getNameInputStyle = () => {
-    if (!form.name) return {};
-    return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
-
-  const getMessageInputStyle = () => {
-    if (!form.message) return {};
-    return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
-  };
+  // const getMessageInputStyle = () => {
+  //   if (!form.message) return {};
+  //   return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
+  // };
 
   return (
     <div style={{ width: '100vw', background: '#fff', minHeight: '100vh', paddingTop: '7rem' }}>
@@ -174,13 +145,26 @@ const validateMessage = () => {
             <li>
               <strong>Address:</strong> Lemikura, Addis Ababa, Ethiopia
             </li>
+              <li>
+             <strong>P.O. Box:</strong> 1079
+            </li>
           </ul>
         </div>
         {/* Form Right */}
         <div style={{ flex: 1, minWidth: 260 }}>
           <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#646cff', textAlign: 'center' }}>Send us a message</h3>
           {submitted ? (
-            <div style={{ color: 'green', marginBottom: '1rem' }}>Thank you for contacting us!</div>
+             <div style={{ color: 'green', marginBottom: '1rem', textAlign: 'center', padding: '0 1rem' }}>
+    <p style={{ margin: '0.5rem 0' }}>Thank you for contacting us!</p>
+    <p style={{ margin: '0.5rem 0' }}>
+      Our team will review your inquiry and get back to you as soon as possible, typically within 24–48 hours.
+    </p>
+    <p style={{ margin: '0.5rem 0' }}>In the meantime, feel free to explore our services.</p>
+    <p style={{ margin: '0.5rem 0' }}>
+      We look forward to assisting you!<br />
+      The Blata Technology Group Team
+    </p>
+  </div>
           ) : (
             <form onSubmit={handleSubmit}>
            <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
@@ -192,7 +176,13 @@ const validateMessage = () => {
             required
             value={form.name}
             onChange={handleChange}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getNameInputStyle()}}
+            onBlur={handleBlur}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', 
+      border: !form.name
+      ? '1px solid white' // White border if the field is empty
+      : errors.name
+      ? '1px solid red' // Red border if there is an error
+      : '1px solid green', width: '100px'}}
             />
             {errors.name && (
               <div
@@ -215,7 +205,13 @@ const validateMessage = () => {
             required
             value={form.email}
             onChange={handleChange}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', width: '100px', ...getEmailInputStyle()}}
+            onBlur={handleBlur}
+            style={{flex: 1, padding: '0.5rem', borderRadius: '4px',  
+       border: !form.email
+      ? '1px solid white' // White border if the field is empty
+      : errors.email
+      ? '1px solid red' // Red border if there is an error
+      : '1px solid green', width: '100px'}}
             />
             {errors.email && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.email}</div>}
            </div>
@@ -227,13 +223,19 @@ const validateMessage = () => {
                   required
                   value={form.message}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   rows={5}
                   style={{
                     flex: '1',
                     padding: '0.5em',
                     borderRadius: '4px',
-                    border: '1px solid #ccc',
-                    ...getMessageInputStyle(),
+                    border: !form.message
+                  ? '1px solid white' // White border if the field is empty
+                  : errors.message
+                  ? '1px solid red' // Red border if there is an error
+                  : '1px solid green',
+                     
+                    //...getMessageInputStyle(),
                   }}
                   placeholder="Type your message here..."
                 />
