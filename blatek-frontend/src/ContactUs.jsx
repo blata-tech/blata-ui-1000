@@ -154,27 +154,17 @@ const handleBlur = (e) => {
         <div style={{ flex: 1, minWidth: 260 }}>
           <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#646cff', textAlign: 'center' }}>Send us a message</h3>
           {submitted ? (
-      <div
-  style={{
-    color: 'green',
-    marginBottom: '1rem',
-    textAlign: 'center',
-    padding: '0 1rem'
-  }}
->
-  <div style={{ textAlign: 'left', display: 'inline-block' }}>
+             <div style={{ color: 'green', marginBottom: '1rem', textAlign: 'center', padding: '0 1rem' }}>
     <p style={{ margin: '0.5rem 0' }}>Thank you for contacting us!</p>
     <p style={{ margin: '0.5rem 0' }}>
       Our team will review your inquiry and get back to you as soon as possible, typically within 24–48 hours.
     </p>
     <p style={{ margin: '0.5rem 0' }}>In the meantime, feel free to explore our services.</p>
     <p style={{ margin: '0.5rem 0' }}>
-      We look forward to assisting you!<br /> <br /> <br />
-      The Blata Technology Group Team.
+      We look forward to assisting you!<br />
+      The Blata Technology Group Team
     </p>
   </div>
-</div>
-
           ) : (
             <form onSubmit={handleSubmit}>
            <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>

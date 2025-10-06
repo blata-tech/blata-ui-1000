@@ -2,52 +2,80 @@ import digitalImg from "./assets/digital.jpg";
 
 function DigitalMarketing() {
   return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={digitalImg}
-        alt="Digital Marketing"
-        style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
-        }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 700, marginBottom: '1.5rem' }}>Digital Marketing</h1>
-        <p style={{ color: '#222', lineHeight: '1.6', fontSize: '1.1rem' }}>
-          Boost your business with our comprehensive digital marketing solutions! We offer
-          <ul style={{ marginTop: '1rem', marginBottom: '1rem', paddingLeft: '1.2rem'}}>
-            <li>SEO</li>
-            <li>Social Media Management</li>
-            <li>Content Creation</li>
-            <li>Email Campaigns</li>
-            <li>and more to help you reach your target audience and grow online.</li>
-          </ul>
-          At Blata, we help businesses grow and succeed in the digital world by delivering tailored digital marketing strategies that reach the right audience and drive measurable results.
-        </p>
-        <p style={{ color: "#222", lineHeight: "1.6", fontSize: "1.1rem" }}>
-          Our services include search engine optimization (SEO) to improve your website’s visibility and attract organic traffic, pay-per-click advertising (PPC) to maximize ROI through targeted campaigns, and social media marketing to build a strong online presence with engaging content and community management.
-        </p>
-        <p style={{ color: '#222', fontSize: '1.08rem', marginTop: '1.5rem' }}>
-          Contact us today to learn how our digital marketing services can help your business thrive!
-        </p>
-      </div>
-    </div>
-  );
-}
+    <div
+         style={{
+           maxWidth: '1200px',
+           width: '96vw',
+           minHeight: '70vh',
+           margin: '4rem auto',
+           padding: '2.5rem 2rem',
+           background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+           borderRadius: '24px',
+           boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+           display: 'flex',
+           flexDirection: 'row',
+           alignItems: 'center',
+           gap: '3rem'
+         }}
+       >
+         {/* Logo Left */}
+         <div style={{
+           flex: '0 0 340px',
+           display: 'flex',
+           alignItems: 'center',
+           justifyContent: 'center'
+         }}>
+           <img
+             src={digitalImg}
+             alt="Blata Technology Group Logo"
+             style={{
+               width: '320px',
+               height: '320px',
+               borderRadius: '24px',
+               background: '#fff',
+               boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+               objectFit: 'contain'
+             }}
+           />
+         </div>
+         {/* Content Right */}
+         <div style={{
+           flex: 1,
+           textAlign: 'left',
+           display: 'flex',
+           flexDirection: 'column',
+           justifyContent: 'center'
+         }}>
+           <h1 style={{
+             color: '#646cff',
+             fontWeight: 900,
+             fontSize: '2.2rem',
+             marginBottom: '1.5rem'
+           }}>
+             Digital Marketing
+           </h1>
+           <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+             At Blata Technology Group, we help businesses grow their online presence and connect with the right audience through smart, results-driven digital marketing strategies. Our goal is to transform your online channels into powerful tools for visibility, engagement, and sales.<br />
 
-export default DigitalMarketing;
+            <p style={{ fontSize: '1.18rem', color: '#6e2399ff', lineHeight: 1.7 }}>What We Offer </p>
+
+              <strong>Social Media Marketing </strong>– Build your brand and engage with customers across platforms like Facebook, Instagram, LinkedIn, and more.<br />
+
+              <strong>Search Engine Optimization (SEO) </strong>– Improve your website’s visibility on search engines and attract organic traffic.<br />
+
+              <strong>Pay-Per-Click (PPC) Advertising</strong> – Drive targeted leads and maximize ROI(return on investment) through Google Ads and social campaigns.<br />
+
+              <strong>Content Marketing</strong> – Create and share valuable content that builds trust and authority.<br />
+
+              <strong>Email Marketing</strong> – Reach your audience directly with personalized and impactful campaigns.<br />
+
+              <strong>Analytics & Reporting</strong> – Track performance and optimize campaigns with data-driven insights.<br />
+
+             Our team blends creativity with analytics to deliver campaigns that not only look good but also deliver measurable results. Whether you want to increase brand awareness, generate leads, or boost online sales, we design strategies tailored to your goals.
+           </p>
+         </div>
+       </div>
+     );
+   }
+   
+   export default DigitalMarketing;

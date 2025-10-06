@@ -15,12 +15,13 @@ const navLinks = [
       { to: '/softwaredevelopment', label: 'Software Development' },
       { to: '/webdevelopment', label: 'Website Development' },
       { to: '/applicationdevelopment', label: 'Application Development' },
-      { to: '/wordpress', label: 'WordPress & CPanel Administration' },
+      { to: '/digital', label: 'Digital Marketing' },
       { to: '/itconsult', label: 'IT Consulting And Digital Strategy' },
       { to: '/cloud', label: 'Cloud & Hosting Services' },
       { to: '/network', label: 'Networking & Security' },
       { to: '/elearning', label: 'E Learning' },
-      { to: '/digital', label: 'Digital Marketing' }
+      { to: '/wordpress', label: 'WordPress & CPanel Administration' }
+      
     ]
   },
   { to: '/contactus', label: 'Contact us' }
