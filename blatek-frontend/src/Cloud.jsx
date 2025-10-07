@@ -2,46 +2,88 @@ import CloudImg from './assets/Cloudc.jpeg';
 
 function Cloud() {
   return (
-    <div style={{
-      maxWidth: '1250px',
-      width: '100vw',
-      margin: '8rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '24px',
-      boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2.5rem'
-    }}>
-      <img
-        src={CloudImg}
-        alt="Cloud Computing"
+      <div
         style={{
-          width: '400px',
-          height: '320px',
-          objectFit: 'cover',
-          borderRadius: '16px',
-          background: '#fff',
-          boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
+          maxWidth: '1200px',
+          width: '96vw',
+          minHeight: '70vh',
+          margin: '4rem auto',
+          padding: '2.5rem 2rem',
+          background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
+          borderRadius: '24px',
+          boxShadow: '0 4px 32px rgba(100,108,255,0.10)',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '3rem'
         }}
-      />
-      <div style={{ flex: 1 }}>
-        <h1 style={{ color: '#646cff', fontWeight: 700, marginBottom: '1.5rem' }}>Cloud Computing And Web Hosting</h1>
-        <p style={{ color: '#222', lineHeight: '1.6', fontSize: '1.1rem' }}>
-            <p>
-             we provide reliable cloud computing and web hosting services to support the digital infrastructure of modern businesses. 
-             Our cloud solutions offer scalable and secure environments for data storage, application deployment, and remote access, allowing your business to operate efficiently from anywhere. 
-             We help organizations migrate to the cloud, optimize their operations, and reduce IT costs through flexible and managed cloud infrastructure. Alongside this, our web hosting services ensure your websites are fast, secure, and always available. 
-             With features like domain management, email setup, regular backups, and intuitive cPanel access, we make it easy for you to manage your online presence with confidence. 
-             Whether you're launching a small business website or running enterprise applications, our hosting and cloud services are built to grow with you.
-            </p>
-            <br /><br />
-            
-        </p>
+      >
+        {/* Logo Left */}
+        <div style={{
+          flex: '0 0 340px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img
+            src={CloudImg}
+            alt="Blata Technology Group Cloud Solutions"
+            style={{
+              width: '320px',
+              height: '620px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'contain'
+            }}
+          />
+        </div>
+        {/* Content Right */}
+        <div style={{
+          flex: 1,
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}>
+          <h1 style={{
+            color: '#646cff',
+            fontWeight: 900,
+            fontSize: '2.2rem',
+            marginBottom: '1.5rem'
+          }}>
+            Cloud Solutions & Hosting Services
+          </h1>
+          <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+            At Blata Technology, we provide reliable, secure, and high-performance cloud computing and web hosting solutions that empower businesses to operate efficiently and scale effortlessly. Our goal is to deliver fast, stable, and cost-effective hosting environments that support your websites, applications, and data with maximum uptime and performance. Whether you’re a growing startup or an established enterprise, we offer flexible cloud solutions tailored to your business needs.
+          </p>
+          <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}>
+            Our Expertise:
+          </strong>
+          <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
+            We specialize in cloud and hosting services that are:          </p>
+          <ul style={{ marginTop: '0.5rem', fontSize: '1.1rem', color: '#444', paddingLeft: '1.2rem' }}>
+            <li>Scalable: Designed to grow seamlessly as your business expands.</li>
+            <li>Secure: Protected by advanced encryption, firewalls, and regular backups.</li>
+            <li>High-Performance: Optimized for speed, reliability, and low downtime.</li>
+            <li>Cost-Effective: Providing maximum value without compromising quality.</li>
+            <li>DevOps & Continuous Integration: Streamlining development and deployment processes for faster time-to-market.</li>
+            <li>24/7 Support: Dedicated technical support to assist you whenever you need it.</li>
+          </ul>
+          <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}>
+            Why Choose us?
+          </strong>
+          <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
+            We combine cutting-edge cloud technology with expert support to ensure your digital operations run smoothly and securely. Our hosting environments are optimized for performance, scalability, and peace of mind — so you can focus on growing your business while we handle the rest.          </p>
+          <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}>
+            Empower Your Business in the Cloud
+          </strong>
+          <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
+            Partner with Blata Technology for dependable cloud computing and web hosting solutions that deliver speed, security, and flexibility. Together, we’ll build a digital foundation that keeps your business connected and future-ready.
+          </p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default Cloud;

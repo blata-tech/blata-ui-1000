@@ -54,25 +54,34 @@ function DigitalMarketing() {
            }}>
              Digital Marketing
            </h1>
-           <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
+           <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
              At Blata Technology Group, we help businesses grow their online presence and connect with the right audience through smart, results-driven digital marketing strategies. Our goal is to transform your online channels into powerful tools for visibility, engagement, and sales.<br />
 
-            <p style={{ fontSize: '1.18rem', color: '#6e2399ff', lineHeight: 1.7 }}>What We Offer </p>
-
-              <strong>Social Media Marketing </strong>– Build your brand and engage with customers across platforms like Facebook, Instagram, LinkedIn, and more.<br />
-
-              <strong>Search Engine Optimization (SEO) </strong>– Improve your website’s visibility on search engines and attract organic traffic.<br />
-
-              <strong>Pay-Per-Click (PPC) Advertising</strong> – Drive targeted leads and maximize ROI(return on investment) through Google Ads and social campaigns.<br />
-
-              <strong>Content Marketing</strong> – Create and share valuable content that builds trust and authority.<br />
-
-              <strong>Email Marketing</strong> – Reach your audience directly with personalized and impactful campaigns.<br />
-
-              <strong>Analytics & Reporting</strong> – Track performance and optimize campaigns with data-driven insights.<br />
+            <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}> What We Offer: </strong><br />  
+            We offer a comprehensive suite of digital marketing services, including:<br />
+            <ul>
+              <li>Social Media Marketing – Build your brand and engage with customers across platforms like Facebook, Instagram, LinkedIn, and more.</li>
+              <li>Search Engine Optimization (SEO) – Improve your website’s visibility on search engines and attract organic traffic.</li>
+              <li>Pay-Per-Click (PPC) Advertising – Drive targeted leads and maximize ROI(return on investment) through Google Ads and social campaigns.</li>
+              <li>Content Marketing – Create and share valuable content that builds trust and authority.</li>
+              <li>Email Marketing – Reach your audience directly with personalized and impactful campaigns.</li>
+              <li>Analytics & Reporting – Track performance and optimize campaigns with data-driven insights.</li>
+            </ul>
 
              Our team blends creativity with analytics to deliver campaigns that not only look good but also deliver measurable results. Whether you want to increase brand awareness, generate leads, or boost online sales, we design strategies tailored to your goals.
            </p>
+           <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}>
+          Why Choose us?
+        </strong>
+        <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
+          We combine innovation, strategy, and technology to help your business connect, engage, and grow online. Our marketing experts use proven methods to deliver real results — driving traffic, improving conversions, and enhancing brand visibility.
+        </p>
+        <strong style={{ marginTop: '1.5rem', fontSize: '1.1rem', color: '#444' }}>
+          Let’s Grow Your Business Digitally
+        </strong>
+        <p style={{ marginTop: '0.3rem', fontSize: '1.1rem', color: '#444' }}>
+          Partner with Blata Technology to take your brand to the next level. Together, we’ll build a strong digital presence that attracts customers, increases loyalty, and delivers sustainable success.
+        </p>
          </div>
        </div>
      );

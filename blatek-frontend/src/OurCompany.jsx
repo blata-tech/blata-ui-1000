@@ -1,4 +1,4 @@
-import logo from './assets/logo.png';
+import campImg from './assets/Camp.jpg';
 
 function OurCompany() {
   return (
@@ -26,8 +26,8 @@ function OurCompany() {
         justifyContent: 'center'
       }}>
         <img
-          src={logo}
-          alt="Blata Technology Group Logo"
+          src={campImg}
+          alt="Blata Technology Group Company"
           style={{
             width: '320px',
             height: '320px',
@@ -55,7 +55,7 @@ function OurCompany() {
           Our Company
         </h1>
         <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
-          Blata Technology Group is a technology-driven company dedicated to delivering innovative software, web solutions, IT consulting, and digital strategy services. Founded with a passion for problem-solving and digital excellence, we help businesses adapt and grow in the fast-evolving digital world.
+          Blata Technology was founded by passionate tech professionals who saw a need for reliable, innovative digital solutions that help businesses grow and succeed in a rapidly changing world. We were created to bridge the gap between cutting-edge technology and real business needs, delivering software, web, and digital services tailored to each client. It is a technology-driven company dedicated to delivering innovative software, web solutions, IT consulting, and digital strategy services. Founded with a passion for problem-solving and digital excellence, we help businesses adapt and grow in the fast-evolving digital world.
         </p>
       </div>
     </div>

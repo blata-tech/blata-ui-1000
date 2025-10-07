@@ -167,7 +167,7 @@ function Navbar() {
       </div>
       <div style={{
         position: 'absolute',
-        right: '11rem',
+        right: '5rem',
         top: '2.5rem',
         gap: '1.2rem',
         display: 'flex',

@@ -1,4 +1,4 @@
-import logo from './assets/logo.png';
+import missionImg from './assets/Mission.jpg';
 
 function Mission() {
   return (
@@ -26,8 +26,8 @@ function Mission() {
         justifyContent: 'center'
       }}>
         <img
-          src={logo}
-          alt="Blata Technology Group Logo"
+          src={missionImg}
+          alt="Blata Technology Group Mission"
           style={{
             width: '320px',
             height: '320px',
