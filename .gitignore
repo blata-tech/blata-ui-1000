@@ -42,6 +42,6 @@ index.html
 package-lock.json
 package.json
 public/
-src/
+# src/
 vite.config.js
 .vite/
