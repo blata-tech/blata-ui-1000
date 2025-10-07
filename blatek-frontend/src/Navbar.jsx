@@ -224,7 +224,7 @@ function Navbar() {
         </a>
         {/* Facebook */}
         <a
-          href="https://web.facebook.com/?_rdc=1&_rdr"
+          href="https://web.facebook.com/profile.php?id=61581761064358"
           target="_blank"
           rel="noopener noreferrer"
           style={{
