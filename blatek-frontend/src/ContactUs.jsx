@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import ContactImg from './assets/Contact.jpg';
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
@@ -12,30 +11,20 @@ function ContactUs() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-  // let error = null;
-  // if (name === 'name') {
-  //   error = validateName();
-  // } else if (name === 'email') {
-  //   error = validateEmail();
-  // } else if (name === 'message') {
-  //   error = validateMessage();
-  // }
-  // setErrors({ ...errors, [name]: error });
-  
   };
 
   const validateName = () => {
-const name = form.name.trim();
-if(!name) {
-  return 'Name is required.';
-}
- if (name.length < 2 || name.length > 50) {
+    const name = form.name.trim();
+    if (!name) {
+      return 'Name is required.';
+    }
+    if (name.length < 2 || name.length > 50) {
       return "Please enter your full name.";
     }
-     if (!/^[A-Za-z]+( [A-Za-z]+){1,2}$/.test(name)) {
+    if (!/^[A-Za-z]+( [A-Za-z]+){1,2}$/.test(name)) {
       return "Please enter your full name.";
     }
-     return null;
+    return null;
   };
   const validateEmail = () => {
     const email = form.email.trim();
@@ -47,29 +36,29 @@ if(!name) {
     }
     return null;
   };
-  const validateMessage = () =>{
-  const message = form.message.trim();
-  if(!message){
-    return 'message is required.';
-  }
-  if(message.length <10 || message.length > 500){
-    return 'message must be between 10 and 500 characters.';
-  }
-  return null;
+  const validateMessage = () => {
+    const message = form.message.trim();
+    if (!message) {
+      return 'message is required.';
+    }
+    if (message.length < 10 || message.length > 500) {
+      return 'message must be between 10 and 500 characters.';
+    }
+    return null;
   };
-const handleBlur = (e) => {
-  let error = null;
+  const handleBlur = (e) => {
+    let error = null;
 
-  if (e.target.name === 'name') {
-    error = validateName();
-  } else if (e.target.name === 'email') {
-    error = validateEmail();
-  } else if (e.target.name === 'message') {
-    error = validateMessage();
-  }
+    if (e.target.name === 'name') {
+      error = validateName();
+    } else if (e.target.name === 'email') {
+      error = validateEmail();
+    } else if (e.target.name === 'message') {
+      error = validateMessage();
+    }
 
-  setErrors({ ...errors, [e.target.name]: error }); // Update the error state for the specific field
-};
+    setErrors({ ...errors, [e.target.name]: error });
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -81,7 +70,7 @@ const handleBlur = (e) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:3000/contact', { // Updated URL to match the backend endpoint
+      const response = await fetch('http://localhost:3000/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -97,25 +86,35 @@ const handleBlur = (e) => {
       alert('Failed to send message.');
     }
   };
-  // const getNameInputStyle = () => {
-  //   if (!form.name) return {};
-  //   return errors.name ? { border: '1px solid red' } : { border: '1px solid green' };
-  // };
-
-  // const getMessageInputStyle = () => {
-  //   if (!form.message) return {};
-  //   return errors.message ? { border: '1px solid red' } : { border: '1px solid green' };
-  // };
 
   return (
-    <div style={{ width: '100vw', background: '#fff', minHeight: '100vh', paddingTop: '7rem' }}>
+    <div style={{ width: '100vw', background: '#FFF', minHeight: '100vh', paddingTop: '7rem' }}>
+      <style>
+        {`
+          @media (max-width: 900px) {
+            .contact-flex {
+              flex-direction: column !important;
+              gap: 2rem !important;
+              padding: 1.2rem !important;
+            }
+            .contact-info, .contact-form {
+              min-width: 0 !important;
+              width: 100% !important;
+            }
+            .contact-img {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
       <div
+        className="contact-flex"
         style={{
           maxWidth: '1100px',
           width: '95vw',
           margin: '2rem auto',
           padding: '2rem',
-          background: '#f5f5f5',
+          background: '#f7f2f2ff',
           borderRadius: '12px',
           boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
           color: '#222',
@@ -127,7 +126,7 @@ const handleBlur = (e) => {
         }}
       >
         {/* Contact Info Left */}
-        <div style={{ flex: 1, minWidth: 220 }}>
+        <div className="contact-info" style={{ flex: 1, minWidth: 220 }}>
           <h2 style={{ color: 'black', marginBottom: '1.5rem', textAlign: 'left' }}>Contact Us</h2>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, lineHeight: '2', textAlign: 'left' }}>
             <li>
@@ -145,78 +144,92 @@ const handleBlur = (e) => {
             <li>
               <strong>Address:</strong> Lemikura, Addis Ababa, Ethiopia
             </li>
-              <li>
-             <strong>P.O. Box:</strong> 1079
+            <li>
+              <strong>P.O. Box:</strong> 1079
             </li>
           </ul>
         </div>
         {/* Form Right */}
-        <div style={{ flex: 1, minWidth: 260 }}>
+        <div className="contact-form" style={{ flex: 1, minWidth: 260 }}>
           <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#646cff', textAlign: 'center' }}>Send us a message</h3>
           {submitted ? (
-             <div style={{ color: 'green', marginBottom: '1rem', textAlign: 'center', padding: '0 1rem' }}>
-    <p style={{ margin: '0.5rem 0' }}>Thank you for contacting us!</p>
-    <p style={{ margin: '0.5rem 0' }}>
-      Our team will review your inquiry and get back to you as soon as possible, typically within 24–48 hours.
-    </p>
-    <p style={{ margin: '0.5rem 0' }}>In the meantime, feel free to explore our services.</p>
-    <p style={{ margin: '0.5rem 0' }}>
-      We look forward to assisting you!<br />
-      The Blata Technology Group Team
-    </p>
-  </div>
+            <div style={{ color: 'green', marginBottom: '1rem', textAlign: 'center', padding: '0 1rem' }}>
+              <p style={{ margin: '0.5rem 0' }}>Thank you for contacting us!</p>
+              <p style={{ margin: '0.5rem 0' }}>
+                Our team will review your inquiry and get back to you as soon as possible, typically within 24–48 hours.
+              </p>
+              <p style={{ margin: '0.5rem 0' }}>In the meantime, feel free to explore our services.</p>
+              <p style={{ margin: '0.5rem 0' }}>
+                We look forward to assisting you!<br />
+                The Blata Technology Group Team
+              </p>
+            </div>
           ) : (
             <form onSubmit={handleSubmit}>
-           <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
-            <label htmlFor='name' style={{marginRight: '2.2rem', fontWeight: 'bold' }}>Name:</label>
-            <input
-            type='text'
-            id='name'
-            name='name'
-            required
-            value={form.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px', 
-      border: !form.name
-      ? '1px solid white' // White border if the field is empty
-      : errors.name
-      ? '1px solid red' // Red border if there is an error
-      : '1px solid green', width: '100px'}}
-            />
-            {errors.name && (
-              <div
-                style={{
-                  color: 'red',
-                  marginTop: '0.5rem',
-                  position: 'relative',
-                }}
-              >
-                {errors.name}
-              </div>
-            )}
-           </div>
-            <div style={{marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
-            <label htmlFor='email' style={{marginRight: '2.2rem', fontWeight: 'bold' }}>Email:</label>
-            <input
-            type='email'
-            id='email'
-            name='email'
-            required
-            value={form.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            style={{flex: 1, padding: '0.5rem', borderRadius: '4px',  
-       border: !form.email
-      ? '1px solid white' // White border if the field is empty
-      : errors.email
-      ? '1px solid red' // Red border if there is an error
-      : '1px solid green', width: '100px'}}
-            />
-            {errors.email && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.email}</div>}
-           </div>
               <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                <label htmlFor="message" style={{marginRight: '1rem', fontWeight: 'bold'}}>Message:</label>
+                <label htmlFor='name' style={{ marginRight: '2.2rem', fontWeight: 'bold' }}>Name:</label>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  required
+                  value={form.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  style={{
+                    flex: 1,
+                    padding: '0.5rem',
+                    borderRadius: '4px',
+                    border: !form.name
+                      ? '1px solid white'
+                      : errors.name
+                        ? '1px solid red'
+                        : '1px solid green',
+                    width: '100px',
+                    background: '#fff',    // <-- add this line for white background
+                    color: '#222'
+                  }}
+                />
+                {errors.name && (
+                  <div
+                    style={{
+                      color: 'red',
+                      marginTop: '0.5rem',
+                      position: 'relative',
+                    }}
+                  >
+                    {errors.name}
+                  </div>
+                )}
+              </div>
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                <label htmlFor='email' style={{ marginRight: '2.2rem', fontWeight: 'bold' }}>Email:</label>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  style={{
+                    flex: 1,
+                    padding: '0.5rem',
+                    borderRadius: '4px',
+                    border: !form.email
+                      ? '1px solid white'
+                      : errors.email
+                        ? '1px solid red'
+                        : '1px solid green',
+                    width: '100px',
+                    background: '#fff',    // <-- add this line for white background
+                    color: '#222'
+                  }}
+                />
+                {errors.email && <div style={{ color: 'red', marginTop: '0.5rem' }}>{errors.email}</div>}
+              </div>
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                <label htmlFor="message" style={{ marginRight: '1rem', fontWeight: 'bold' }}>Message:</label>
                 <textarea
                   id="message"
                   name="message"
@@ -230,12 +243,12 @@ const handleBlur = (e) => {
                     padding: '0.5em',
                     borderRadius: '4px',
                     border: !form.message
-                  ? '1px solid white' // White border if the field is empty
-                  : errors.message
-                  ? '1px solid red' // Red border if there is an error
-                  : '1px solid green',
-                     
-                    //...getMessageInputStyle(),
+                      ? '1px solid white'
+                      : errors.message
+                        ? '1px solid red'
+                        : '1px solid green',
+                         background: '#fff',    // <-- add this line for white background
+                         color: '#222'
                   }}
                   placeholder="Type your message here..."
                 />
