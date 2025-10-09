@@ -3,7 +3,7 @@ import esubalewImg from "./assets/esubalew.jpg";
 import tewodrosImg from "./assets/tewodros.jpg";
 import womenImg from "./assets/women.jpg";
 
-// Add LinkedIn URLs for each member (replace '#' with real URLs if available)
+// Add LinkedIn URLs for each member
 const managers = [
   {
     title: "Finance Manager",
@@ -65,11 +65,7 @@ function LinkedInIcon({ url }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      style={{
-        display: "inline-block",
-        marginTop: 6,
-        marginBottom: 2,
-      }}
+      style={{ display: "inline-block", marginTop: 6, marginBottom: 2 }}
       title="LinkedIn"
     >
       <svg
@@ -87,10 +83,7 @@ function LinkedInIcon({ url }) {
 }
 
 function TeamCard({ member }) {
-  const isITManager =
-    member.title === "IT Manager" && Array.isArray(member.children);
-  const isFinanceManager =
-    member.title === "Finance Manager" && Array.isArray(member.children);
+  const isITManager = member.title === "IT Manager" && Array.isArray(member.children);
 
   return (
     <div
@@ -98,12 +91,14 @@ function TeamCard({ member }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        margin: "0 1rem",
-        minWidth: 110,
-        background: "#e5e7eb", // grey background for card
+        margin: "1rem",
+        minWidth: 120,
+        maxWidth: 200,
+        background: "#e5e7eb",
         borderRadius: 16,
         boxShadow: "0 2px 8px rgba(100,108,255,0.07)",
-        padding: "1.2rem 1.2rem 0.5rem 1.2rem",
+        padding: "1rem",
+        flex: '1 1 auto'
       }}
     >
       <img
@@ -118,40 +113,23 @@ function TeamCard({ member }) {
           background: "#fff",
         }}
       />
-      <div
-        style={{
-          color: "#000000",
-          fontWeight: 800,
-          fontSize: "1.15rem",
-          marginTop: 10,
-          textAlign: "center",
-        }}
-      >
+      <div style={{ color: "#000", fontWeight: 800, fontSize: "1.15rem", marginTop: 10, textAlign: "center" }}>
         {member.name}
       </div>
-      <div
-        style={{
-          color: "#000000",
-          fontWeight: 600,
-          fontSize: "0.95rem",
-          marginTop: 2,
-          marginBottom: 2,
-          textAlign: "center",
-          letterSpacing: "0.5px",
-        }}
-      >
+      <div style={{ color: "#000", fontWeight: 600, fontSize: "0.95rem", marginTop: 2, marginBottom: 2, textAlign: "center", letterSpacing: "0.5px" }}>
         {member.title}
       </div>
       <LinkedInIcon url={member.linkedin || "#"} />
-      {/* Children (Accountant or Developers) */}
+
       {member.children && (
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: isITManager ? "row" : "column", // Side by side for IT Manager
             justifyContent: "center",
-            marginTop: 48,
-            gap: isITManager ? 4 : isFinanceManager ? 0 : 12,
+            flexWrap: "wrap",
+            marginTop: 16,
+            gap: 12
           }}
         >
           {member.children.map((child, idx) => (
@@ -171,29 +149,17 @@ function Team() {
           maxWidth: 1100,
           margin: "4rem auto",
           padding: "2rem",
-          background: "#e5e7eb", // grey background for main card area
+          background: "#e5e7eb",
           borderRadius: 24,
           boxShadow: "0 4px 32px rgba(100,108,255,0.08)",
         }}
       >
-        <h1
-          style={{
-            color: "#09229cff",
-            fontWeight: 800,
-            marginBottom: "2.5rem",
-            textAlign: "center",
-          }}
-        >
+        <h1 style={{ color: "#09229cff", fontWeight: 800, marginBottom: "2.5rem", textAlign: "center" }}>
           Our Team
         </h1>
-        {/* General Manager at the top center */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "3rem",
-          }}
-        >
+
+        {/* General Manager at top center */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
           <TeamCard
             member={{
               title: "General Manager",
@@ -203,15 +169,9 @@ function Team() {
             }}
           />
         </div>
-        {/* Managers row: always horizontal, no wrap */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "1rem",
-            marginBottom: "5.5rem",
-          }}
-        >
+
+        {/* Managers row */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap", marginBottom: "5.5rem" }}>
           {managers.map((manager, idx) => (
             <TeamCard key={idx} member={manager} />
           ))}

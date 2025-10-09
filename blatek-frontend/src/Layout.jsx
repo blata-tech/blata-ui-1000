@@ -15,8 +15,8 @@ function Layout({ children }) {
         gap: '1.5rem',
         background: 'transparent'
       }}>
-        <Link to="/register" style={{ color: '#646cff', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
-        <Link to="/login" style={{ color: '#646cff', fontWeight: 600, textDecoration: 'none' }}>Login</Link>
+        {/* <Link to="/register" style={{ color: '#646cff', fontWeight: 600, textDecoration: 'none' }}>Register</Link>
+        <Link to="/login" style={{ color: '#646cff', fontWeight: 600, textDecoration: 'none' }}>Login</Link> */}
       </div>
       <Navbar />
       <main style={{ maxWidth: 800, textAlign: 'center' }}>

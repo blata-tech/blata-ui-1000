@@ -45,3 +45,15 @@ body, #root {
 .read-the-docs {
   color: #888;
 }
+@media (max-width: 900px) {
+  .logo {
+    height: 400px;
+  }
+}
+
+/* Mobile view (less than 600px) */
+@media (max-width: 600px) {
+  .logo {
+    height: 250px;
+  }
+}
