@@ -15,16 +15,19 @@ function OurCompany() {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '3rem'
+        gap: '3rem',
+        flexWrap: 'wrap', // makes it responsive
       }}
     >
       {/* Logo Left */}
-      <div style={{
-        flex: '0 0 340px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
+      <div
+        style={{
+          flex: '0 0 340px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <img
           src={campImg}
           alt="Blata Technology Group Company"
@@ -34,28 +37,47 @@ function OurCompany() {
             borderRadius: '24px',
             background: '#fff',
             boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-            objectFit: 'contain'
+            objectFit: 'contain',
           }}
         />
       </div>
+
       {/* Content Right */}
-      <div style={{
-        flex: 1,
-        textAlign: 'left',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
-      }}>
-        <h1 style={{
-          color: '#646cff',
-          fontWeight: 900,
-          fontSize: '2.2rem',
-          marginBottom: '1.5rem'
-        }}>
+      <div
+        style={{
+          flex: 1,
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <h1
+          style={{
+            color: '#646cff',
+            fontWeight: 900,
+            fontSize: '2.2rem',
+            marginBottom: '1.5rem',
+          }}
+        >
           Our Company
         </h1>
-        <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
-          Blata Technology was founded by passionate tech professionals who saw a need for reliable, innovative digital solutions that help businesses grow and succeed in a rapidly changing world. We were created to bridge the gap between cutting-edge technology and real business needs, delivering software, web, and digital services tailored to each client. It is a technology-driven company dedicated to delivering innovative software, web solutions, IT consulting, and digital strategy services. Founded with a passion for problem-solving and digital excellence, we help businesses adapt and grow in the fast-evolving digital world.
+        <p
+          style={{
+            fontSize: '1.18rem',
+            color: '#222',
+            lineHeight: 1.7,
+          }}
+        >
+          Blata Technology was founded by passionate tech professionals who saw a
+          need for reliable, innovative digital solutions that help businesses grow
+          and succeed in a rapidly changing world. We were created to bridge the gap
+          between cutting-edge technology and real business needs, delivering software,
+          web, and digital services tailored to each client. It is a technology-driven
+          company dedicated to delivering innovative software, web solutions, IT
+          consulting, and digital strategy services. Founded with a passion for
+          problem-solving and digital excellence, we help businesses adapt and grow
+          in the fast-evolving digital world.
         </p>
       </div>
     </div>

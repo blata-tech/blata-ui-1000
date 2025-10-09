@@ -15,16 +15,20 @@ function Vision() {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '3rem'
+        gap: '3rem',
+        flexWrap: 'wrap', // makes it responsive on smaller screens
       }}
     >
-      {/* Logo Left */}
-      <div style={{
-        flex: '0 0 340px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
+      {/* Image Left */}
+      <div
+        style={{
+          flex: '0 0 340px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minWidth: '280px', // ensures it shrinks properly on small screens
+        }}
+      >
         <img
           src={visionImg}
           alt="Blata Technology Group Vision"
@@ -34,24 +38,32 @@ function Vision() {
             borderRadius: '24px',
             background: '#fff',
             boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-            objectFit: 'contain'
+            objectFit: 'contain',
+            maxWidth: '100%', // makes image scale down
+            height: 'auto',
           }}
         />
       </div>
+
       {/* Content Right */}
-      <div style={{
-        flex: 1,
-        textAlign: 'left',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
-      }}>
-        <h1 style={{
-          color: '#646cff',
-          fontWeight: 900,
-          fontSize: '2.2rem',
-          marginBottom: '1.5rem'
-        }}>
+      <div
+        style={{
+          flex: 1,
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          minWidth: '280px', // ensures content shrinks nicely
+        }}
+      >
+        <h1
+          style={{
+            color: '#646cff',
+            fontWeight: 900,
+            fontSize: '2.2rem',
+            marginBottom: '1.5rem',
+          }}
+        >
           Vision
         </h1>
         <p style={{ fontSize: '1.18rem', color: '#222', lineHeight: 1.7 }}>
@@ -59,6 +71,7 @@ function Vision() {
         </p>
       </div>
     </div>
-    );
+  );
 }
+
 export default Vision;
