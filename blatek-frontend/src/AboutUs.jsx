@@ -1,3 +1,5 @@
+import React from "react";
+
 function AboutUs() {
   const sections = [
     {
@@ -85,49 +87,113 @@ function AboutUs() {
     },
   ];
 
+  // Responsive styles using CSS-in-JS
+  const containerStyle = {
+    maxWidth: '1100px',
+    width: '98vw',
+    margin: '3rem auto',
+    padding: '2.5rem 2rem',
+    background: '#f5f5f5',
+    borderRadius: '16px',
+    boxShadow: '0 2px 16px rgba(100,108,255,0.10)',
+    color: '#222',
+  };
+
+  const headingStyle = {
+    textAlign: 'center',
+    color: '#646cff',
+    fontWeight: 800,
+    marginBottom: '2.5rem',
+    fontSize: '2.2rem',
+  };
+
+  // Add a <style> tag for media queries
+  React.useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @media (max-width: 900px) {
+        .about-section-row {
+          flex-direction: column !important;
+          gap: 0.5rem !important;
+        }
+        .about-section-title {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          font-size: 1.08rem !important;
+          text-align: left !important;
+          padding-top: 0 !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .about-section-content {
+          font-size: 1rem !important;
+        }
+        .about-container {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .about-heading {
+          font-size: 1.4rem !important;
+        }
+      }
+      @media (max-width: 600px) {
+        .about-container {
+          padding: 0.7rem 0.2rem !important;
+        }
+        .about-heading {
+          font-size: 1.1rem !important;
+        }
+        .about-section-title {
+          font-size: 1rem !important;
+        }
+        .about-section-content {
+          font-size: 0.98rem !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
-    <div style={{
-      maxWidth: '1100px',
-      width: '98vw',
-      margin: '3rem auto',
-      padding: '2.5rem 2rem',
-      background: '#f5f5f5',
-      borderRadius: '16px',
-      boxShadow: '0 2px 16px rgba(100,108,255,0.10)',
-      color: '#222'
-    }}>
-      <h1 style={{
-        textAlign: 'center',
-        color: '#646cff',
-        fontWeight: 800,
-        marginBottom: '2.5rem',
-        fontSize: '2.2rem'
-      }}>
+    <div className="about-container" style={containerStyle}>
+      <h1 className="about-heading" style={headingStyle}>
         Empowering Digital Transformation
       </h1>
       {sections.map((section, idx) => (
         <div
           key={idx}
+          className="about-section-row"
           style={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'flex-start',
             marginBottom: '2.2rem',
-            gap: '2rem'
+            gap: '2rem',
           }}
         >
-          <div style={{
-            minWidth: 180,
-            maxWidth: 220,
-            fontWeight: 700,
-            color: '#213547',
-            fontSize: '1.15rem',
-            textAlign: 'left',
-            paddingTop: '0.2rem'
-          }}>
+          <div
+            className="about-section-title"
+            style={{
+              minWidth: 180,
+              maxWidth: 220,
+              fontWeight: 700,
+              color: '#213547',
+              fontSize: '1.15rem',
+              textAlign: 'left',
+              paddingTop: '0.2rem',
+            }}
+          >
             {section.title}
           </div>
-          <div style={{ flex: 1, fontSize: '1.08rem', lineHeight: 1.7 }}>
+          <div
+            className="about-section-content"
+            style={{
+              flex: 1,
+              fontSize: '1.08rem',
+              lineHeight: 1.7,
+            }}
+          >
             {section.content}
           </div>
         </div>
