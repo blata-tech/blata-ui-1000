@@ -49,7 +49,7 @@ function Home() {
           src={Hom}
           className="logo"
           alt="Blata Technology Group"
-          style={{ width: '100%', height: 'auto', cursor: 'pointer',marginLeft: '0px',  marginBottom: '1px' }}
+          style={{ width: '100%', height: '635px', cursor: 'pointer',marginLeft: '0px',  marginBottom: '1px' }}
           onClick={() => navigate('/')}
         />
         <div
@@ -248,7 +248,10 @@ function Home() {
                     marginTop: '0.5rem',
                     cursor: 'pointer',
                   }}
-                  onClick={() => navigate(service.link)}
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    navigate(service.link);
+                  }}
                 >
                   More
                 </button>

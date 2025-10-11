@@ -130,7 +130,11 @@ function Navbar() {
     >
       {/* Logo */}
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link to="/">
+        <Link 
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          style={{ display: 'flex', alignItems: 'center', padding: isMobile ? '0 1rem' : '0 2rem' }}
+        >
           <img
             src={logo}
             alt="Logo"
@@ -191,6 +195,7 @@ function Navbar() {
             <Link
               to={link.to || '#'}
               onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 if (isMobile && link.dropdown) {
                   setDropdownOpen(dropdownOpen === idx ? null : idx);
                 } else setMenuOpen(false);
@@ -234,6 +239,7 @@ function Navbar() {
                       key={item.to}
                       to={item.to}
                       onClick={() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                         setDropdownOpen(false);
                         setMenuOpen(false);
                       }}
