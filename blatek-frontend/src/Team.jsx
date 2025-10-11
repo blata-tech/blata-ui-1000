@@ -58,7 +58,6 @@ const managers = [
     linkedin: "#",
   },
 ];
-
 function LinkedInIcon({ url }) {
   return (
     <a
@@ -82,8 +81,9 @@ function LinkedInIcon({ url }) {
   );
 }
 
-function TeamCard({ member }) {
+function TeamCard({ member, isParentITManager = false }) {
   const isITManager = member.title === "IT Manager" && Array.isArray(member.children);
+  const isSmallScreen = window.innerWidth <= 768;
 
   return (
     <div
@@ -92,8 +92,8 @@ function TeamCard({ member }) {
         flexDirection: "column",
         alignItems: "center",
         margin: "1rem",
-        minWidth: 120,
-        maxWidth: 200,
+        minWidth: 10,
+        maxWidth: 290,
         background: "#e5e7eb",
         borderRadius: 16,
         boxShadow: "0 2px 8px rgba(100,108,255,0.07)",
@@ -125,15 +125,15 @@ function TeamCard({ member }) {
         <div
           style={{
             display: "flex",
-            flexDirection: isITManager ? "row" : "column", // Side by side for IT Manager
+            flexDirection: isSmallScreen ? "column" : isITManager || isParentITManager ? "row" : "column", 
+            //flexDirection: isITManager ? "row" : "column", // Side by side for IT Manager
             justifyContent: "center",
-            flexWrap: "wrap",
             marginTop: 16,
-            gap: 12
+            gap: 8
           }}
         >
           {member.children.map((child, idx) => (
-            <TeamCard key={idx} member={child} />
+           <TeamCard key={idx} member={child} isParentITManager={isITManager} />
           ))}
         </div>
       )}
@@ -154,7 +154,7 @@ function Team() {
           boxShadow: "0 4px 32px rgba(100,108,255,0.08)",
         }}
       >
-        <h1 style={{ color: "#09229cff", fontWeight: 800, marginBottom: "2.5rem", textAlign: "center" }}>
+        <h1 style={{ color: "#09229cff", fontWeight: 800, marginBottom: "2.5rem", textAlign: "center", marginTop: "3rem" }}>
           Our Team
         </h1>
 

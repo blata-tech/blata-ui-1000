@@ -54,6 +54,7 @@ function Cloud() {
     fontWeight: 900,
     fontSize: isMobile ? '1.8rem' : '2.2rem',
     marginBottom: '1.5rem',
+    marginTop: '1rem'
   };
 
   const textStyle = {

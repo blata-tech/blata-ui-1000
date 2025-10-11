@@ -63,6 +63,8 @@ const SocialIcons = ({ size = 22 }) => {
         display: 'inline-block',
         background: '#fff',
         borderRadius: '50%',
+        width: '25px',
+        height: '25px',   
         padding: '0.4rem',
         boxShadow: '0 2px 8px rgba(100,108,255,0.13)'
       }}
@@ -123,7 +125,7 @@ function Navbar() {
         zIndex: 2000,
         boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
         padding: '0',
-        height: isMobile ? '70px' : '100px'
+        height: isMobile ? '90px' : '120px'
       }}
     >
       {/* Logo */}
@@ -133,7 +135,7 @@ function Navbar() {
             src={logo}
             alt="Logo"
             style={{
-              height: isMobile ? '50px' : '100px',
+              height: isMobile ? '50px' : '120px',
               width: isMobile ? '150px' : '250px',
               objectFit: 'cover',
               transition: 'all 0.3s ease'
@@ -152,7 +154,7 @@ function Navbar() {
             cursor: 'pointer',
             color: '#fff',
             fontSize: '2rem'
-            
+              
           }}
         >
          {menuOpen ? '✖' : '☰'}
@@ -167,7 +169,7 @@ function Navbar() {
           flexDirection: isMobile ? 'column' : 'row',
           justifyContent: isMobile ? 'flex-start' : 'center',
           alignItems: isMobile ? 'flex-start' : 'center',
-          gap: isMobile ? '1rem' : '2rem',
+          gap: isMobile ? '1rem' : '5rem',
           position: isMobile ? 'absolute' : 'static',
           top: isMobile ? '70px' : 'auto',
           left: 0,
@@ -217,7 +219,7 @@ function Navbar() {
                     position: isMobile ? 'static' : 'absolute',
                     top: isMobile ? 'auto' : '2.5rem',
                     left: 0,
-                    background: isMobile ? 'rgba(255,255,255,0.05)' : '#f5f5f5',
+                    background: isMobile ? 'rgba(0,0,0,0.8)' : '#e0f7fa', // New background color
                     color: '#222',
                     borderRadius: isMobile ? '0' : '8px',
                     boxShadow: isMobile ? 'none' : '0 2px 8px rgba(100,108,255,0.15)',
@@ -256,7 +258,7 @@ function Navbar() {
           </div>
         ))}
 
-        {/* Mobile Social Icons */}
+        {/* Mobile Social Icons */} 
         {isMobile && menuOpen && (
           <div
             style={{

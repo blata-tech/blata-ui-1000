@@ -7,7 +7,7 @@ function WordPress() {
         maxWidth: '1200px',
         width: '96vw',
         minHeight: '70vh',
-        margin: '4rem auto',
+        margin: '5rem auto',
         padding: '2.5rem 2rem',
         background: 'linear-gradient(120deg, #f5f5f5 80%, #e7eaff 100%)',
         borderRadius: '24px',

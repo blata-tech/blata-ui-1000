@@ -49,7 +49,7 @@ function Home() {
           src={Hom}
           className="logo"
           alt="Blata Technology Group"
-          style={{ width: '100%', height: 'auto', cursor: 'pointer',marginLeft: '0px' }}
+          style={{ width: '100%', height: 'auto', cursor: 'pointer',marginLeft: '0px',  marginBottom: '1px' }}
           onClick={() => navigate('/')}
         />
         <div
@@ -205,14 +205,16 @@ function Home() {
                 padding: '2.5rem',
                 maxWidth: '1100px',
                 width: '100%',
+                flexWrap: 'wrap', // makes it responsive
               }}
             >
               <img
                 src={service.img}
                 alt={service.title}
                 style={{
-                  width: '340px',
-                  height: '210px',
+                  width: '100%',
+                  maxWidth: '340px',
+                  height: 'auto',
                   borderRadius: '16px',
                   objectFit: 'cover',
                   margin: service.reverse ? '0 0 0 2.5rem' : '0 2.5rem 0 0',
