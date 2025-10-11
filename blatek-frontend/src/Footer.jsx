@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 function Footer() {
   return (
@@ -27,7 +28,7 @@ function Footer() {
       >
         {/* Contact Info */}
         <div style={{ flex: "1 1 220px", textAlign: "left" }}>
-          <h3 style={{ color: "#646cff" }}>Contact Us</h3>
+          <h3 style={{ color: "#646cff", fontSize: "1.5rem" }}>Contact Us</h3>
           <p style={{ margin: 0, lineHeight: 1.8 }}>
             <strong>Address:</strong> Lemikura, Addis Ababa, Ethiopia<br />
             <strong>Email:</strong>{" "}
@@ -52,9 +53,10 @@ function Footer() {
             flexDirection: "column",
             alignItems: "center",
             textAlign: "center",
+
           }}
         >
-          <h3 style={{ color: "#646cff", marginBottom: "0.5rem" }}>Our Services</h3>
+          <h3 style={{ color: "#646cff", marginBottom: "1rem", fontSize: "1.5rem" }}>Our Services</h3>
           <div
             style={{
               display: "flex",
@@ -64,74 +66,73 @@ function Footer() {
               gap: "2.5rem",
             }}
           >
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, minWidth: 160 }}>
-              <li>
-                <Link to="/itconsult" style={{ color: "#fff", textDecoration: "none" }}>
+            <ul className="service-list" style={{ listStyle: "none", padding: 0, margin: 0, minWidth: 100 }}>
+              <li style={{ marginBottom: 1}}>
+                <Link to="/itconsult" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   IT Consulting & Digital Strategy
                 </Link>
               </li>
-              <li>
-                <Link to="/cloud" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/cloud" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Cloud & Hosting Services
                 </Link>
               </li>
-              <li>
-                <Link to="/network" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/network" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Networking & Security
                 </Link>
               </li>
-              <li>
-                <Link to="/elearning" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/elearning" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   E-Learning
                 </Link>
               </li>
-              <li>
-                <Link to="/digital" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/digital" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Digital Marketing
                 </Link>
               </li>
             </ul>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, minWidth: 160 }}>
-              <li>
-                <Link to="/softwaredevelopment" style={{ color: "#fff", textDecoration: "none" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, minWidth: 160, lineHeight: 1.6 }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/softwaredevelopment" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Software Development
                 </Link>
               </li>
-              <li>
-                <Link to="/webdevelopment" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/webdevelopment" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Web Development
                 </Link>
               </li>
-              <li>
-                <Link to="/applicationdevelopment" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/applicationdevelopment" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   Application Development
                 </Link>
               </li>
-              <li>
-                <Link to="/wordpress" style={{ color: "#fff", textDecoration: "none" }}>
+              <li style={{ marginBottom: 1 }}>
+                <Link to="/wordpress" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                   WordPress & CPanel Administration
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-
         {/* Quick Links */}
         <div style={{ flex: "1 1 180px", textAlign: "left" }}>
-          <h3 style={{ color: "#646cff" }}>Quick Links</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            <li>
-              <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
+          <h3 style={{ color: "#646cff", fontSize: "1.5rem" }}>Quick Links</h3>
+          <ul className="quick-links" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: 1 }}>
+              <Link to="/" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/ourcompany" style={{ color: "#fff", textDecoration: "none" }}>
+            <li style={{ marginBottom: 1 }}>
+              <Link to="/ourcompany" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                 Our Company
               </Link>
             </li>
-            <li>
-              <Link to="/contactus" style={{ color: "#fff", textDecoration: "none" }}>
+            <li style={{ marginBottom: 1 }}>
+              <Link to="/contactus" onClick={scrollToTop} style={{ color: "#fff", textDecoration: "none" }}>
                 Contact Us
               </Link>
             </li>
