@@ -38,6 +38,9 @@ import digitalImg from './assets/digital.jpg';
 import serverImg from './assets/server.jpg';
 import tecImg from './assets/Tec.jpeg';
 import techhImg from './assets/Techh.jpg';
+import ElearnImg1 from "./assets/Elearn1.jpg";
+import ElearnImg2 from "./assets/Elearn2.jpeg";
+
 
 function Home() {
   const navigate = useNavigate();

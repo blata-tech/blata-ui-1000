@@ -224,7 +224,7 @@ function Navbar() {
                     position: isMobile ? 'static' : 'absolute',
                     top: isMobile ? 'auto' : '2.5rem',
                     left: 0,
-                    background: isMobile ? 'rgba(0,0,0,0.8)' : '#e0f7fa', // New background color
+                    background: isMobile ? 'rgba(0,0,0,0.8)' : '#696e6eff', // New background color
                     color: '#222',
                     borderRadius: isMobile ? '0' : '8px',
                     boxShadow: isMobile ? 'none' : '0 2px 8px rgba(100,108,255,0.15)',
