@@ -1,6 +1,18 @@
-import WordpImg from './assets/Wordp.jpg';
-
+import { useState, useEffect } from 'react';
+import WordpImg1 from './assets/Wordp.jpg';
+import WordpImg2 from './assets/Wordp1.png';
+import WordpImg3 from './assets/Wordp2.png';
 function WordPress() {
+  const wordpressImages = [WordpImg1, WordpImg2, WordpImg3]; // Use the correct variable names
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % wordpressImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [wordpressImages.length]);
+
   return (
     <div
       style={{
@@ -16,7 +28,7 @@ function WordPress() {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '3rem',
-        flexWrap: 'wrap', // makes it responsive
+        flexWrap: 'wrap',
       }}
     >
       {/* Image Left */}
@@ -26,22 +38,32 @@ function WordPress() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minWidth: '280px', // ensures proper scaling on small screens
+          minWidth: '280px',
+          position: 'relative',
+          height: '720px',
+          overflow: 'hidden',
         }}
       >
-        <img
-          src={WordpImg}
-          alt="Blata Technology Group WordPress"
-          style={{
-            width: '320px',
-            borderRadius: '24px',
-            background: '#fff',
-            boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-            objectFit: 'contain',
-            maxWidth: '100%',
-            height: 'auto',
-          }}
-        />
+        {wordpressImages.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`WordPress & cPanel Administration ${index + 1}`}
+            style={{
+              width: '320px',
+              height: '620px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'cover',
+              maxWidth: '100%',
+              position: 'absolute',
+              top: `${(index - currentImageIndex) * 100}%`,
+              left: 0,
+              transition: 'top 0.5s ease-in-out',
+            }}
+          />
+        ))}
       </div>
 
       {/* Content Right */}
@@ -52,7 +74,7 @@ function WordPress() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          minWidth: '280px', // ensures content shrinks nicely
+          minWidth: '280px',
         }}
       >
         <h1

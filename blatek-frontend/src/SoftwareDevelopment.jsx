@@ -1,6 +1,19 @@
+import { useState, useEffect } from 'react';
 import SoftImg from './assets/Soft.jpg';
+import SoftImg2 from './assets/Soft2.jpg';
+import SoftImg3 from './assets/Soft3.jpg';
 
 function SoftwareDevelopment() {
+  const images = [SoftImg, SoftImg2, SoftImg3]; // Use the correct variable names
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <div
       style={{
@@ -16,7 +29,7 @@ function SoftwareDevelopment() {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '3rem',
-        flexWrap: 'wrap', // makes it responsive
+        flexWrap: 'wrap',
       }}
     >
       {/* Image Left */}
@@ -26,22 +39,32 @@ function SoftwareDevelopment() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minWidth: '280px', // ensures proper scaling on small screens
+          minWidth: '280px',
+          position: 'relative',
+          height: '720px',
+          overflow: 'hidden',
         }}
       >
-        <img
-          src={SoftImg}
-          alt="Blata Technology Group Software Development"
-          style={{
-            width: '320px',
-            borderRadius: '24px',
-            background: '#fff',
-            boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-            objectFit: 'contain',
-            maxWidth: '100%',
-            height: 'auto',
-          }}
-        />
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`software development ${index + 1}`}
+            style={{
+              width: '320px',
+              height: '620px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'cover',
+              maxWidth: '100%',
+              position: 'absolute',
+              top: `${(index - currentImageIndex) * 100}%`,
+              left: 0,
+              transition: 'top 0.5s ease-in-out',
+            }}
+          />
+        ))}
       </div>
 
       {/* Content Right */}
@@ -52,7 +75,7 @@ function SoftwareDevelopment() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          minWidth: '280px', // ensures content shrinks nicely
+          minWidth: '280px',
         }}
       >
         <h1
@@ -62,6 +85,7 @@ function SoftwareDevelopment() {
             fontSize: '2.2rem',
             marginBottom: '1.5rem',
           }}
+      
         >
           Software Design & Development
         </h1>

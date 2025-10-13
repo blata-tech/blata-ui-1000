@@ -1,8 +1,20 @@
 import { useState, useEffect } from "react";
 import digitalImg from "./assets/digital.jpg";
+import digitalImg1 from "./assets/digital1.jpg";
+import digitalImg2 from "./assets/digital2.jpg";
 
 function DigitalMarketing() {
+  const images = [digitalImg, digitalImg1, digitalImg2];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [images.length]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -23,6 +35,8 @@ function DigitalMarketing() {
     flexDirection: isMobile ? "column" : "row",
     alignItems: "center",
     gap: "3rem",
+    overflow: "hidden", // Ensure images do not overflow the container
+    position: "relative",
   };
 
   const imageContainer = {
@@ -30,16 +44,23 @@ function DigitalMarketing() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    position: "relative", // For stacking images
+    height: "720px", // Fixed height for the image container
+    overflow: "hidden", // Prevent images from overflowing
   };
 
-  const imageStyle = {
+  const imageStyle = (index) => ({
     width: isMobile ? "250px" : "320px",
-    height: isMobile ? "250px" : "320px",
+    height: isMobile ? "250px" : "620px",
     borderRadius: "24px",
     background: "#fff",
     boxShadow: "0 2px 16px rgba(100,108,255,0.13)",
-    objectFit: "contain",
-  };
+    objectFit: "cover",
+    position: "absolute", // Stack images on top of each other
+    top: `${(index - currentImageIndex) * 100}%`, // Position images vertically
+    left: 0,
+    transition: "top 0.5s ease-in-out", // Smooth vertical transition
+  });
 
   const contentStyle = {
     flex: 1,
@@ -54,7 +75,7 @@ function DigitalMarketing() {
     fontWeight: 900,
     fontSize: isMobile ? "1.8rem" : "2.2rem",
     marginBottom: "1.5rem",
-    marginTop: '1rem'
+    marginTop: "1rem",
   };
 
   const paragraphStyle = {
@@ -80,7 +101,14 @@ function DigitalMarketing() {
     <div style={containerStyle}>
       {/* Image Left */}
       <div style={imageContainer}>
-        <img src={digitalImg} alt="Blata Technology Group Digital Marketing" style={imageStyle} />
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`Digital Marketing ${index + 1}`}
+            style={imageStyle(index)}
+          />
+        ))}
       </div>
 
       {/* Content Right */}

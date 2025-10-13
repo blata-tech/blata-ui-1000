@@ -1,6 +1,18 @@
+import { useState, useEffect } from 'react';
 import NetworkImg from './assets/Network.jpg';
-
+import NetworkImg1 from './assets/Network1.jpg';
+import NetworkImg2 from './assets/Network2.jpg';
 function Network() {
+  const images = [NetworkImg, NetworkImg1, NetworkImg2]; // Use the correct variable names
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <div
       style={{
@@ -16,35 +28,45 @@ function Network() {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '3rem',
-        flexWrap: 'wrap', // ✅ allows wrapping for smaller screens
+        flexWrap: 'wrap',
       }}
     >
-      {/* Image Section */}
+      {/* Image Left */}
       <div
         style={{
           flex: '0 0 340px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100%',
+          minWidth: '280px',
+          position: 'relative',
+          height: '720px',
+          overflow: 'hidden',
         }}
       >
-        <img
-          src={NetworkImg}
-          alt="Blata Technology Group Networking and Security"
-          style={{
-            width: '100%',
-            maxWidth: '340px',
-            height: 'auto',
-            borderRadius: '24px',
-            background: '#fff',
-            boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-            objectFit: 'contain',
-          }}
-        />
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`  Network & Security Solutions ${index + 1}`}
+            style={{
+              width: '320px',
+              height: '720px',
+              borderRadius: '24px',
+              background: '#fff',
+              boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
+              objectFit: 'cover',
+              maxWidth: '100%',
+              position: 'absolute',
+              top: `${(index - currentImageIndex) * 100}%`,
+              left: 0,
+              transition: 'top 0.5s ease-in-out',
+            }}
+          />
+        ))}
       </div>
 
-      {/* Text Section */}
+      {/* Content Right */}
       <div
         style={{
           flex: 1,
@@ -52,7 +74,7 @@ function Network() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          minWidth: '300px',
+          minWidth: '280px',
         }}
       >
         <h1
@@ -62,6 +84,8 @@ function Network() {
             fontSize: '2.2rem',
             marginBottom: '1.5rem',
           }}
+      
+
         >
           Network & Security Solutions
         </h1>

@@ -1,9 +1,22 @@
 import { useEffect, useState } from 'react';
 import CloudImg from './assets/Cloudc.jpeg';
+import CloudImg1 from './assets/Cloud1.jpg';
+import CloudImg2 from './assets/Cloud2.png';
 
 function Cloud() {
+  const images = [CloudImg, CloudImg1, CloudImg2];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [images.length]);
+
+  // Handle screen resize for responsiveness
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
@@ -23,6 +36,8 @@ function Cloud() {
     flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
     gap: isMobile ? '1.5rem' : '3rem',
+    overflow: 'hidden',
+    position: 'relative',
   };
 
   const imgContainerStyle = {
@@ -30,16 +45,23 @@ function Cloud() {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
+    height: '720px',
+    overflow: 'hidden',
   };
 
-  const imageStyle = {
+  const imageStyle = (index) => ({
     width: isMobile ? '90%' : '320px',
-    height: isMobile ? 'auto' : '620px',
+    height: isMobile ? '250px' : '620px', // Consistent height for mobile
     borderRadius: '24px',
     background: '#fff',
     boxShadow: '0 2px 16px rgba(100,108,255,0.13)',
-    objectFit: 'contain',
-  };
+    objectFit: 'cover',
+    position: 'absolute',
+    top: `${(index - currentImageIndex) * 100}%`,
+    left: 0,
+    transition: 'top 0.5s ease-in-out',
+  });
 
   const contentStyle = {
     flex: 1,
@@ -54,7 +76,7 @@ function Cloud() {
     fontWeight: 900,
     fontSize: isMobile ? '1.8rem' : '2.2rem',
     marginBottom: '1.5rem',
-    marginTop: '1rem'
+    marginTop: '1rem',
   };
 
   const textStyle = {
@@ -78,13 +100,16 @@ function Cloud() {
 
   return (
     <div style={containerStyle}>
-      {/* Logo Left */}
+      {/* Image Left */}
       <div style={imgContainerStyle}>
-        <img
-          src={CloudImg}
-          alt="Blata Technology Group Cloud Solutions"
-          style={imageStyle}
-        />
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`Cloud Image ${index + 1}`}
+            style={imageStyle(index)}
+          />
+        ))}
       </div>
 
       {/* Content Right */}

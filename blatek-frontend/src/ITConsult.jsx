@@ -1,8 +1,20 @@
 import { useState, useEffect } from "react";
 import ITImg from './assets/IT.jpg';
+import ITImg1 from './assets/IT1.jpg';
+import ITImg2 from './assets/IT2.jpg';
+
 
 function ITConsult() {
+  const images = [ITImg, ITImg1, ITImg2];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [images.length]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -30,16 +42,23 @@ function ITConsult() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+     position: "relative", // For stacking images
+    height: isMobile ? "250px" : "720px", // Adjust height for mobile
+    overflow: "hidden",
   };
 
-  const imageStyle = {
+  const imageStyle = (index) =>({
     width: isMobile ? "250px" : "320px",
     height: isMobile ? "250px" : "620px",
     borderRadius: "24px",
     background: "#fff",
     boxShadow: "0 2px 16px rgba(100,108,255,0.13)",
-    objectFit: "contain",
-  };
+    objectFit: "cover",
+    position: "absolute", // Stack images on top of each other
+    top: `${(index - currentImageIndex) * 100}%`, // Position images vertically
+    left: 0,
+    transition: "top 0.5s ease-in-out", 
+  });
 
   const contentStyle = {
     flex: 1,
@@ -78,11 +97,19 @@ function ITConsult() {
   };
 
   return (
-    <div style={containerStyle}>
+      <div style={containerStyle}>
       {/* Image Left */}
       <div style={imageContainer}>
-        <img src={ITImg} alt="Blata Technology Group IT Consulting" style={imageStyle} />
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`IT Consulting ${index + 1}`}
+            style={imageStyle(index)}
+          />
+        ))}
       </div>
+
 
       {/* Content Right */}
       <div style={contentStyle}>
