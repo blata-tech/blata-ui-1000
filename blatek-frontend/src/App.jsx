@@ -1,16 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './App.css';
 import logo from './assets/logo.png';
 
-import Register from './Register.jsx';
 import Navbar from './Navbar.jsx';
 import AboutUs from './AboutUs.jsx';
 import Services from './Services.jsx';
 import ContactUs from './ContactUs.jsx';
 import Layout from './Layout.jsx';
-import Login from './Login.jsx';
-import ModernLandingPage from './LandingPage.jsx';
 import Footer from './Footer.jsx';
 import OurCompany from './OurCompany.jsx';
 import Vision from './Vision.jsx';
@@ -37,39 +35,150 @@ import AppImg from './assets/App.jpeg';
 import CloudCImg from './assets/CloudC.jpeg';
 import NetworkImg from './assets/network.jpg';
 import digitalImg from './assets/digital.jpg';
+import serverImg from './assets/server.jpg';
+import tecImg from './assets/Tec.jpeg';
+import techhImg from './assets/Techh.jpg';
 
 function Home() {
   const navigate = useNavigate();
 
+  // Slider images and overlay texts
+  const slides = [
+    {
+      img: Hom,
+      text: "Connecting with the Future of Technology"
+    },
+     {
+      img: tecImg,
+      text: "Empowering Innovation with Modern Tech"
+    },
+    {
+      img: serverImg,
+      text: "Reliable Server Solutions for Your Business"
+    },
+    {
+      img: techhImg,
+      text: "Your Trusted Partner in Digital Transformation"
+    }
+  ];
+
+  const [current, setCurrent] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  // Auto-slide every 4 seconds
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+        setFade(true);
+      }, 300); // match fade duration
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [current, slides.length]);
+
   return (
     <>
-      {/* Hero Section */}
-      <div style={{ position: 'relative', width: '100vw', background: '#fff' }}>
-        <img
-          src={Hom}
-          className="logo"
-          alt="Blata Technology Group"
-          style={{ width: '100%', height: '635px', cursor: 'pointer',marginLeft: '0px',  marginBottom: '1px' }}
-          onClick={() => navigate('/')}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '40%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'rgba(34,34,34,0.65)',
-            color: '#fff',
-            padding: '2rem 3rem',
-            borderRadius: '16px',
-            fontSize: '2.5rem',
-            fontWeight: 700,
-            letterSpacing: '2px',
-            textAlign: 'center',
-            maxWidth: '90vw',
-          }}
-        >
-          Connecting with the Future of Technology
+      {/* Hero Section with Slider */}
+      <div style={{ position: 'relative', width: '100vw', height: '635px', background: '#fff', overflow: 'hidden' }}>
+        <style>
+          {`
+            .slider-img {
+              width: 100vw;
+              height: 635px;
+              object-fit: cover;
+              transition: opacity 0.4s ease;
+              position: absolute;
+              top: 0; left: 0;
+            }
+            .slider-img.hide {
+              opacity: 0;
+              z-index: 0;
+            }
+            .slider-img.show {
+              opacity: 1;
+              z-index: 1;
+            }
+            .slider-text {
+              position: absolute;
+              top: 40%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background: rgba(34,34,34,0.65);
+              color: #fff;
+              padding: 2rem 3rem;
+              border-radius: 16px;
+              font-size: 2.5rem;
+              font-weight: 700;
+              letter-spacing: 2px;
+              text-align: center;
+              max-width: 90vw;
+              z-index: 2;
+              transition: opacity 0.4s;
+              opacity: 1;
+            }
+            @media (max-width: 900px) {
+              .slider-img { height: 400px; }
+              .slider-container { height: 400px; }
+              .slider-text { font-size: 1.5rem; padding: 1.2rem 1.5rem; }
+            }
+            @media (max-width: 600px) {
+              .slider-img { height: 250px; }
+              .slider-container { height: 250px; }
+              .slider-text { font-size: 1rem; padding: 0.7rem 0.5rem; }
+            }
+            .slider-controls {
+              position: absolute;
+              bottom: 2rem;
+              left: 50%;
+              transform: translateX(-50%);
+              display: flex;
+              gap: 0.7rem;
+              z-index: 3;
+            }
+            .slider-dot {
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background: #fff;
+              opacity: 0.5;
+              border: 2px solid #646cff;
+              cursor: pointer;
+              transition: opacity 0.2s, background 0.2s;
+            }
+            .slider-dot.active {
+              opacity: 1;
+              background: #646cff;
+            }
+          `}
+        </style>
+        {slides.map((slide, idx) => (
+          <img
+            key={idx}
+            src={slide.img}
+            alt={`slide-${idx}`}
+            className={`slider-img${current === idx && fade ? ' show' : ' hide'}`}
+            style={{ pointerEvents: current === idx ? 'auto' : 'none' }}
+            onClick={() => navigate('/')}
+          />
+        ))}
+        <div className="slider-text">
+          {slides[current].text}
+        </div>
+        <div className="slider-controls">
+          {slides.map((_, idx) => (
+            <div
+              key={idx}
+              className={`slider-dot${current === idx ? ' active' : ''}`}
+              onClick={() => {
+                setFade(false);
+                setTimeout(() => {
+                  setCurrent(idx);
+                  setFade(true);
+                }, 400);
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -269,12 +378,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />
-        {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/aboutus" element={<Layout><AboutUs /></Layout>} />
         <Route path="/services" element={<Layout><Services /></Layout>} />
         <Route path="/contactus" element={<Layout><ContactUs /></Layout>} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/landingpage" element={<Layout><ModernLandingPage /></Layout>} />
         <Route path="/footer" element={<Layout><Footer /></Layout>} />
         <Route path="/ourcompany" element={<Layout><OurCompany /></Layout>} />
         <Route path="/vision" element={<Layout><Vision /></Layout>} />

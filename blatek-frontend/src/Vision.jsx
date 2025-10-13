@@ -34,7 +34,6 @@ function Vision() {
           alt="Blata Technology Group Vision"
           style={{
             width: '320px',
-            height: '320px',
             borderRadius: '24px',
             background: '#fff',
             boxShadow: '0 2px 16px rgba(100,108,255,0.13)',

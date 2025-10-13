@@ -133,15 +133,15 @@ function Navbar() {
         <Link 
           to="/"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{ display: 'flex', alignItems: 'center', padding: isMobile ? '0 1rem' : '0 2rem' }}
+          style={{ display: 'flex', alignItems: 'center', padding: 0, margin: 0 }}
         >
           <img
             src={logo}
             alt="Logo"
             style={{
-              height: isMobile ? '50px' : '120px',
+              height: isMobile ? '90px' : '120px',
               width: isMobile ? '150px' : '250px',
-              objectFit: 'cover',
+              //objectFit: 'contain',
               transition: 'all 0.3s ease'
             }}
           />
