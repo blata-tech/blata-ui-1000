@@ -28,7 +28,7 @@ import DigitalMarketing from './Digiital.jsx';
 import Hom from './assets/hom.jpg';
 import SoftImg from './assets/Soft.jpg';
 import WebImg from './assets/web1.jpg';
-import WordpImg from './assets/w2.jpg';
+import WordpImg from './assets/wordp.jpg';
 import ITImg from './assets/IT.jpg';
 import ElearnImg from './assets/Elearn.jpg';
 import AppImg from './assets/App.jpeg';
