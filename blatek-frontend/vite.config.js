@@ -1,12 +1,21 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
+  root: resolve(__dirname, '..'),
   plugins: [react()],
+  resolve: {
+    alias: {
+      // ✅ Tell Vite where to find React dependencies
+      react: resolve(__dirname, 'node_modules/react'),
+      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
+    },
+  },
   server: {
     fs: {
-      allow: ['.'], // Adjust this to allow only frontend files
+       allow: [resolve(__dirname, '..')], // Adjust this to allow only frontend files
     },
   },
   optimizeDeps: {
