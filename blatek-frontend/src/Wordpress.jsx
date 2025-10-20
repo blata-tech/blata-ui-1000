@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import WordpImg1 from './assets/Wordp.jpg';
-import WordpImg2 from './assets/Wordp1.png';
-import WordpImg3 from './assets/Wordp2.png';
+import WordpImg1 from './assets/wordp.jpg';
+import WordpImg2 from './assets/wordp1.png';
+import WordpImg3 from './assets/wordp2.png';
 function WordPress() {
   const wordpressImages = [WordpImg1, WordpImg2, WordpImg3]; // Use the correct variable names
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
