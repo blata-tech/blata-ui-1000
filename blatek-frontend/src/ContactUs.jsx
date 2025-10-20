@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import ContactImg from './assets/Contact.jpg';
+import { API_ENDPOINTS } from './config/api.js';
+
 function ContactUs() {
   const [form, setForm] = useState({
     name: '',
@@ -81,7 +83,7 @@ const handleBlur = (e) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:3000/contact', { // Updated URL to match the backend endpoint
+      const response = await fetch(API_ENDPOINTS.contact, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
