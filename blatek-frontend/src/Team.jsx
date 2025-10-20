@@ -1,7 +1,7 @@
-import TadeleImg from "./assets/Tadele.Png";
-import esubalewImg from "./assets/esubalew.jpg";
-import tewodrosImg from "./assets/tewodros.jpg";
-import womenImg from "./assets/women.jpg";
+import TadeleImg from "./assets/Tadele.png";
+import esubalewImg from "./assets/Esubalew.jpg";
+import tewodrosImg from "./assets/Tewodros.jpg";
+import womenImg from "./assets/Women.jpg";
 
 // Add LinkedIn URLs for each member
 const managers = [

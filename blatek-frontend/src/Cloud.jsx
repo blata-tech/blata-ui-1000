@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CloudImg from './assets/Cloudc.jpeg';
+import CloudImg from './assets/CloudC.jpeg';
 import CloudImg1 from './assets/Cloud1.jpg';
 import CloudImg2 from './assets/Cloud2.png';
 

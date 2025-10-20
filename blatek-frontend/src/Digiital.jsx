@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import digitalImg from "./assets/digital.jpg";
-import digitalImg1 from "./assets/digital1.jpg";
-import digitalImg2 from "./assets/digital2.jpg";
+import digitalImg from "./assets/Digital.jpg";
+import digitalImg1 from "./assets/Digital1.jpg";
+import digitalImg2 from "./assets/Digital2.jpg";
 
 function DigitalMarketing() {
   const images = [digitalImg, digitalImg1, digitalImg2];
