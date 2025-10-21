@@ -83,6 +83,12 @@ const handleBlur = (e) => {
       return;
     }
     try {
+      // Check if backend is available
+      if (!import.meta.env.VITE_API_BASE_URL) {
+        alert('Contact form is temporarily unavailable. Please email us directly at contact@blatatechnology.net');
+        return;
+      }
+      
       const response = await fetch(API_ENDPOINTS.contact, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
