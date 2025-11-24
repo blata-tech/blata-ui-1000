@@ -1,7 +1,7 @@
-import TadeleImg from "./assets/Tadele.png";
-import esubalewImg from "./assets/Esubalew.jpg";
-import tewodrosImg from "./assets/Tewodros.jpg";
-import womenImg from "./assets/Women.jpg";
+import TadeleImg from "./assets/Tadele.Png";
+import esubalewImg from "./assets/esubalew.jpg";
+import tewodrosImg from "./assets/tewodros.jpg";
+import womenImg from "./assets/women.jpg";
 
 // Add LinkedIn URLs for each member
 const managers = [
@@ -33,8 +33,8 @@ const managers = [
     children: [
       {
         title: "Software Developer",
-        name: "Esubalew Gashaw",
-        img: esubalewImg,
+        name: "Sophonias Kebede",
+        img: TadeleImg,
         linkedin: "https://www.linkedin.com/in/esubalew-gashaw?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BI4jSuPhkSSGrI9BYqh9DTQ%3D%3D",
       },
       {
@@ -163,9 +163,9 @@ function Team() {
           <TeamCard
             member={{
               title: "General Manager",
-              name: "Tadele Admas",
-              img: TadeleImg,
-              linkedin: "https://www.linkedin.com/in/tadelegerem?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BzuxTUlzHS2CbjEmmO4KJOA%3D%3D",
+              name: "Esubalew Gashaw",
+              img: esubalewImg,
+              linkedin: "https://www.linkedin.com/in/esubalew-gashaw?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BI4jSuPhkSSGrI9BYqh9DTQ%3D%3D",
             }}
           />
         </div>
