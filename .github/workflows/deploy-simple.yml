@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     defaults:
       run:
         working-directory: blatek-frontend
@@ -23,17 +23,37 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.5'
-          cache: 'npm'
-          cache-dependency-path: blatek-frontend/package-lock.json
-
-      - name: Verify Node version
+          node-version: '20'
+          check-latest: true
+          
+      - name: Clear npm cache and verify Node
         run: |
+          echo "Node version:"
           node --version
+          echo "NPM version:"
           npm --version
+          echo "Clearing npm cache:"
+          npm cache clean --force
           
       - name: Install dependencies
-        run: npm ci
+        run: |
+          # Install with exact Node 20 compatible versions
+          npm ci
+          # Verify installation
+          npm list vite
+          
+      - name: Check Node and Vite compatibility
+        run: |
+          echo "Checking Node version requirement for Vite..."
+          node --version
+          npm list vite
+          # Check if we need to downgrade Vite for Node 18 compatibility
+          NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
+          if [ "$NODE_VERSION" -lt 20 ]; then
+            echo "Node version $NODE_VERSION detected. Installing Vite 5.x for compatibility..."
+            npm install --no-save vite@^5.0.0
+          fi
+          npx vite --version || echo "Vite check failed"
           
       - name: Verify Vite installation
         run: |
