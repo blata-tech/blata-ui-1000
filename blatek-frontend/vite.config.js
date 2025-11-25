@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   root: '.',
-  base: process.env.NODE_ENV === 'production' ? '/blata-ui-1000/' : '/',
+  base: '/', // Use root path since we have a custom domain (CNAME)
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
