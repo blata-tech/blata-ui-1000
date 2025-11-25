@@ -38,7 +38,7 @@ blatek-frontend/.vite/
 2.jpg
 README.md
 config/
-index.html
+/index.html
 package-lock.json
 package.json
 public/
