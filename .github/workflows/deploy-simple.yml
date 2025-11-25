@@ -23,16 +23,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20.19.5'
           check-latest: true
+          always-auth: false
           
-      - name: Clear npm cache and verify Node
+      - name: Verify and force Node.js 20
         run: |
-          echo "Node version:"
+          echo "Initial Node version:"
+          node --version
+          # If still on Node 18, force install Node 20
+          if [[ $(node --version) == *"v18"* ]]; then
+            echo "Detected Node 18, forcing Node 20 installation"
+            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+          fi
+          echo "Final Node version:"
           node --version
           echo "NPM version:"
           npm --version
-          echo "Clearing npm cache:"
+          # Clear any cached versions
           npm cache clean --force
           
       - name: Install dependencies
