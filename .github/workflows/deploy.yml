@@ -3,8 +3,16 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -18,23 +26,29 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
-        cache-dependency-path: 'blatek-frontend/package-lock.json'
         
     - name: Install dependencies
       run: |
         cd blatek-frontend
-        npm ci
+        npm install
         
     - name: Build
       run: |
         cd blatek-frontend
         npm run build
+        cp src/assets/logo.png dist/
+        cp public/2.jpg dist/
+      env:
+        NODE_ENV: production
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./blatek-frontend/dist
         
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-        cname: www.blatatechnology.net
+      id: deployment
+      uses: actions/deploy-pages@v4
