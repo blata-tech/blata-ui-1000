@@ -1,6 +1,10 @@
-# React + Vite
+# Blata Tech Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Built with React + Vite. This application showcases Blata Tech's services and capabilities.
+
+## Deployment
+
+The application is automatically deployed to GitHub Pages via GitHub Actions on every push to the main branch.
 
 Currently, two official plugins are available:
 
