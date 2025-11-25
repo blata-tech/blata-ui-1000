@@ -1,38 +1,20 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: resolve(__dirname, '..'),
-  base: process.env.NODE_ENV === 'production' ? '/blata-ui-1000/' : '/',
+  plugins: [react()],
+  base: '/',
   build: {
-    outDir: 'blatek-frontend/dist',
+    outDir: 'dist',
     assetsDir: 'assets',
   },
-  plugins: [react()],
-  resolve: {
-    alias: {
-      // ✅ Tell Vite where to find React dependencies
-      react: resolve(__dirname, 'node_modules/react'),
-      'react-dom': resolve(__dirname, 'node_modules/react-dom'),
-    },
-  },
   server: {
-    fs: {
-       allow: [resolve(__dirname, '..')], // Adjust this to allow only frontend files
-    },
+    port: 5173,
+    host: true
   },
-  optimizeDeps: {
-    exclude: [
-      'express',
-      'body-parser',
-      'cors',
-      'express-validator',
-      'fs',
-      'path',
-      'url',
-      'word-list',
-    ],
-  },
+  preview: {
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0'
+  }
 });
