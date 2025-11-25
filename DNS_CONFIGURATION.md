@@ -2,13 +2,13 @@
 
 ## Required DNS Records
 
-After deploying to Railway, you'll get specific CNAME targets. Add these records to your DNS provider:
+For GitHub Pages deployment, add these DNS records to your DNS provider:
 
 ### Frontend (Main Website)
 ```
 Type: CNAME
 Name: www
-Target: [Railway will provide this - something like: blatek-frontend-production-xxxx.up.railway.app]
+Target: blata-tech.github.io
 TTL: 3600
 ```
 
@@ -16,7 +16,7 @@ TTL: 3600
 ```
 Type: CNAME
 Name: api  
-Target: [Railway will provide this - something like: backend-production-xxxx.up.railway.app]
+Target: [Your backend deployment URL - e.g., from Heroku, Vercel, or other service]
 TTL: 3600
 ```
 
@@ -28,19 +28,19 @@ Target: www.blatatechnology.net
 TTL: 3600
 ```
 
-## How to Get Railway Domain Targets
+## GitHub Pages Configuration
 
-1. **For Backend:**
-   - Go to Railway Dashboard → Your Project → Backend Service
-   - Go to Settings → Domains
-   - Add custom domain: `api.blatatechnology.net`
-   - Railway will show you the exact CNAME target
+1. **Frontend (GitHub Pages):**
+   - Your site will be automatically deployed to: `https://blata-tech.github.io/blata-ui-1000/`
+   - Custom domain: `www.blatatechnology.net` (configured via CNAME file)
 
-2. **For Frontend:**
-   - Go to Railway Dashboard → Your Project → Frontend Service  
-   - Go to Settings → Domains
-   - Add custom domain: `www.blatatechnology.net`
-   - Railway will show you the exact CNAME target
+2. **Backend Deployment:**
+   - Deploy your backend to a service like:
+     - Heroku
+     - Vercel
+     - Netlify Functions
+     - Digital Ocean
+     - AWS Lambda
 
 ## DNS Providers Instructions
 

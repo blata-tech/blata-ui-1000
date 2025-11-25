@@ -41,7 +41,7 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// Health check endpoint for Railway
+// Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
 });
