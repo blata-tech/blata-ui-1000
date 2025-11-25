@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Simple)
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -27,8 +27,6 @@ jobs:
           cd blatek-frontend
           npm install
           npm run build
-          cp ../logo.png dist/
-          cp ../2.jpg dist/
         env:
           NODE_ENV: production
 

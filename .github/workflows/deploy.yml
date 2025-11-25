@@ -1,8 +1,6 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (Disabled)
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -32,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd blatek-frontend
-        npm ci --only=production
+        npm ci
         
     - name: Build
       run: |
@@ -41,19 +39,18 @@ jobs:
       env:
         NODE_ENV: production
         
-    - name: Copy additional assets
+    - name: Copy additional files
       run: |
         cd blatek-frontend
-        # Copy assets that might be needed
-        if [ -f "src/assets/logo.png" ]; then
-          cp src/assets/logo.png dist/ || echo "Could not copy logo.png"
-        fi
-        if [ -f "public/2.jpg" ]; then
-          cp public/2.jpg dist/ || echo "Could not copy 2.jpg"
-        fi
-        if [ -f "public/CNAME" ]; then
-          cp public/CNAME dist/ || echo "Could not copy CNAME"
-        fi
+        # Ensure dist directory exists
+        ls -la dist/
+        # Copy additional assets if they exist
+        [ -f "src/assets/logo.png" ] && cp src/assets/logo.png dist/ || echo "logo.png not found in src/assets"
+        [ -f "public/2.jpg" ] && cp public/2.jpg dist/ || echo "2.jpg not found in public"
+        [ -f "public/CNAME" ] && cp public/CNAME dist/ || echo "CNAME not found in public"
+        [ -f "public/logo.png" ] && cp public/logo.png dist/ || echo "logo.png not found in public"
+        echo "Final dist contents:"
+        ls -la dist/
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
