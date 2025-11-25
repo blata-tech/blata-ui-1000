@@ -5,6 +5,11 @@ import { resolve } from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   root: resolve(__dirname, '..'),
+  base: process.env.NODE_ENV === 'production' ? '/blata-ui-1000/' : '/',
+  build: {
+    outDir: 'blatek-frontend/dist',
+    assetsDir: 'assets',
+  },
   plugins: [react()],
   resolve: {
     alias: {
