@@ -37,7 +37,7 @@ blatek-frontend/.vite/
 # Ignore root files that should not be tracked
 2.jpg
 README.md
-config/
+/config/
 /index.html
 package-lock.json
 package.json
