@@ -13,6 +13,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     defaults:
       run:
         working-directory: blatek-frontend
@@ -23,71 +26,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.5'
+          node-version: '20'
           check-latest: true
-          always-auth: false
-          
-      - name: Verify and force Node.js 20
-        run: |
-          echo "Initial Node version:"
-          node --version
-          # If still on Node 18, force install Node 20
-          if [[ $(node --version) == *"v18"* ]]; then
-            echo "Detected Node 18, forcing Node 20 installation"
-            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-          fi
-          echo "Final Node version:"
-          node --version
-          echo "NPM version:"
-          npm --version
-          # Clear any cached versions
-          npm cache clean --force
+          cache: 'npm'
+          cache-dependency-path: blatek-frontend/package-lock.json
           
       - name: Install dependencies
-        run: |
-          # Install with exact Node 20 compatible versions
-          npm ci
-          # Verify installation
-          npm list vite
+        run: npm ci
           
-      - name: Check Node and Vite compatibility
+      - name: Verify setup
         run: |
-          echo "Checking Node version requirement for Vite..."
-          node --version
-          npm list vite
-          # Check if we need to downgrade Vite for Node 18 compatibility
-          NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-          if [ "$NODE_VERSION" -lt 20 ]; then
-            echo "Node version $NODE_VERSION detected. Installing Vite 5.x for compatibility..."
-            npm install --no-save vite@^5.0.0
-          fi
-          npx vite --version || echo "Vite check failed"
-          
-      - name: Verify Vite installation
-        run: |
-          npx vite --version
-          pwd
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Vite version: $(npx vite --version)"
+          echo "Build directory contents:"
           ls -la
-          ls -la index.html
-          
-      - name: Debug build environment
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Contents:"
-          ls -la
-          echo "Checking for index.html:"
-          if [ -f "index.html" ]; then
-            echo "index.html found"
-            cat index.html | head -10
-          else
-            echo "index.html NOT found"
-          fi
-          echo "Vite config:"
-          if [ -f "vite.config.js" ]; then
-            cat vite.config.js
-          fi
         
       - name: Build application
         run: npm run build
