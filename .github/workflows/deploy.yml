@@ -26,20 +26,34 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: blatek-frontend/package-lock.json
         
     - name: Install dependencies
       run: |
         cd blatek-frontend
-        npm install
+        npm ci --only=production
         
     - name: Build
       run: |
         cd blatek-frontend
         npm run build
-        cp src/assets/logo.png dist/
-        cp public/2.jpg dist/
       env:
         NODE_ENV: production
+        
+    - name: Copy additional assets
+      run: |
+        cd blatek-frontend
+        # Copy assets that might be needed
+        if [ -f "src/assets/logo.png" ]; then
+          cp src/assets/logo.png dist/ || echo "Could not copy logo.png"
+        fi
+        if [ -f "public/2.jpg" ]; then
+          cp public/2.jpg dist/ || echo "Could not copy 2.jpg"
+        fi
+        if [ -f "public/CNAME" ]; then
+          cp public/CNAME dist/ || echo "Could not copy CNAME"
+        fi
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
